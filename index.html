@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapwa Labs | Fractional CTO & Engineering Leadership</title>
+    <style>
+        :root {
+            --color-bg: #F5F6F2;
+            --color-sage: #C5C9B8;
+            --color-text: #1a1a1a;
+            --color-text-muted: #5c5c5c;
+            --color-accent: #F7931E;
+            --color-accent-hover: #E8850A;
+            --color-dark: #1a1a1a;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: 17px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Kapwa Asterisk SVG - reusable */
+        .kapwa-asterisk {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+        }
+
+        .kapwa-asterisk svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.25rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(245, 246, 242, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--color-text);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-asterisk {
+            width: 28px;
+            height: 28px;
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            font-weight: 450;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: visible;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7.5vw, 5rem);
+            font-weight: 500;
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
+            max-width: 580px;
+            margin-bottom: 2.5rem;
+            line-height: 1.65;
+            font-weight: 400;
+            animation: fadeUp 0.8s ease-out 0.15s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--color-dark);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            animation: fadeUp 0.8s ease-out 0.3s both;
+        }
+
+        .cta-button:hover {
+            background: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .cta-button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Highlight word container for asterisk positioning */
+        .highlight-word {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Large decorative asterisk behind "scales" */
+        .hero-asterisk {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            opacity: 0.08;
+            color: var(--color-dark);
+            animation: slowRotate 60s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes slowRotate {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4.5rem 4rem;
+            background: var(--color-sage);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 7rem 4rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-header p {
+            color: var(--color-text-muted);
+            max-width: 550px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            padding: 2.25rem;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.08);
+            transition: all 0.35s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.09);
+            border-color: var(--color-accent);
+        }
+
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1.25rem;
+            color: var(--color-accent);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 550;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 7rem 4rem;
+            background: var(--color-dark);
+            color: white;
+        }
+
+        .experience-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .experience h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 1.75rem;
+            letter-spacing: -0.025em;
+        }
+
+        .experience h2 .highlight {
+            color: var(--color-accent);
+        }
+
+        .experience p {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            opacity: 0.85;
+            margin-bottom: 1.25rem;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .logo-item {
+            background: rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--color-accent);
+        }
+
+        /* Testimonial */
+        .testimonial {
+            padding: 7rem 4rem;
+            text-align: center;
+            background: var(--color-bg);
+            position: relative;
+        }
+
+        .testimonial-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-asterisk {
+            width: 48px;
+            height: 48px;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial blockquote {
+            font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+            font-weight: 450;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .testimonial cite {
+            font-style: normal;
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+        }
+
+        .testimonial cite strong {
+            display: block;
+            color: var(--color-text);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 7rem 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 10px;
+            filter: grayscale(100%);
+        }
+
+        .about-text h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text h2 .highlight {
+            color: var(--color-accent);
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--color-text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .about-text p strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 7rem 4rem;
+            background: var(--color-sage);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            right: -100px;
+            bottom: -100px;
+            width: 350px;
+            height: 350px;
+            opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L50 40 L50 0 Z M50 60 L50 100 M0 50 L40 50 M60 50 L100 50 M14.6 14.6 L35.9 35.9 M64.1 64.1 L85.4 85.4 M85.4 14.6 L64.1 35.9 M35.9 64.1 L14.6 85.4' stroke='%231a1a1a' stroke-width='18' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: contain;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .cta-section p {
+            color: var(--color-text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 4rem;
+            background: var(--color-dark);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            opacity: 0.6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 3.5rem;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .about-photo {
+                max-width: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero, .services, .about, .cta-section {
+                padding: 5rem 1.5rem;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 3rem 1.5rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .experience {
+                padding: 4rem 1.5rem;
+            }
+            .logo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            footer {
+                flex-direction: column;
+                gap: 1.25rem;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+            .hero-asterisk {
+                width: 400px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Inline SVG for the Kapwa Asterisk -->
+    <svg style="display: none;">
+        <symbol id="kapwa-asterisk" viewBox="0 0 100 100">
+            <path d="M42 0 L42 35 L42 0 Z M42 65 L42 100 L58 100 L58 65 L58 100 Z M0 42 L35 42 L0 42 Z M65 42 L100 42 L100 58 L65 58 L100 58 Z M10.5 10.5 L32 32 L10.5 10.5 Z M68 68 L89.5 89.5 L78 89.5 L68 78 Z M89.5 10.5 L68 32 L78 32 L89.5 21 Z M32 68 L10.5 89.5 L21 89.5 L32 78 Z" fill="currentColor"/>
+            <rect x="42" y="0" width="16" height="38" fill="currentColor"/>
+            <rect x="42" y="62" width="16" height="38" fill="currentColor"/>
+            <rect x="0" y="42" width="38" height="16" fill="currentColor"/>
+            <rect x="62" y="42" width="38" height="16" fill="currentColor"/>
+            <rect x="11" y="11" width="16" height="32" transform="rotate(45 19 27)" fill="currentColor"/>
+            <rect x="57" y="57" width="16" height="32" transform="rotate(45 65 73)" fill="currentColor"/>
+            <rect x="57" y="11" width="16" height="32" transform="rotate(-45 65 27)" fill="currentColor"/>
+            <rect x="11" y="57" width="16" height="32" transform="rotate(-45 19 73)" fill="currentColor"/>
+        </symbol>
+    </svg>
+
+    <nav>
+        <a href="#" class="logo">
+            <svg class="logo-asterisk" viewBox="0 0 100 100" fill="currentColor">
+                <rect x="40" y="5" width="20" height="90" rx="2"/>
+                <rect x="5" y="40" width="90" height="20" rx="2"/>
+                <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(45 50 50)"/>
+                <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(-45 50 50)"/>
+            </svg>
+            kapwa labs
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Engineering leadership that <span class="highlight-word"><span class="highlight">scales</span><svg class="hero-asterisk" viewBox="0 0 100 100" fill="currentColor">
+            <rect x="40" y="5" width="20" height="90" rx="2"/>
+            <rect x="5" y="40" width="90" height="20" rx="2"/>
+            <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(45 50 50)"/>
+            <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(-45 50 50)"/>
+        </svg></span> with you.</h1>
+            <p class="hero-subtitle">Fractional CTO services for startups and growth-stage companies. Strategic technical leadership when you need it, without the full-time commitment.</p>
+            <a href="#contact" class="cta-button">
+                Let's Talk
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Years in Tech</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">$3B+</div>
+            <div class="stat-label">Exit Value</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Engineers Scaled</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Companies Led</div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>How I Can Help</h2>
+            <p>Strategic technical leadership and hands-on guidance to help your company build the right things, the right way.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <h3>Technical Strategy</h3>
+                <p>Architecture reviews, technology roadmaps, and strategic planning aligned with your business goals and growth trajectory.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <h3>Team Building</h3>
+                <p>Hiring strategy, org design, and engineering culture development. Scale from 10 to 100 engineers without losing velocity.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                </svg>
+                <h3>Engineering Excellence</h3>
+                <p>Process optimization, CI/CD pipelines, and engineering best practices that accelerate delivery and reduce technical debt.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polygon points="10 8 16 12 10 16 10 8"/>
+                </svg>
+                <h3>Product Launch</h3>
+                <p>From MVP to scale-ready. Technical due diligence, launch preparation, and post-launch optimization strategies.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+                <h3>Data & Cloud</h3>
+                <p>Data engineering strategy, cloud architecture, and infrastructure optimization. Modern stacks that scale efficiently.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"/>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+                <h3>M&A Support</h3>
+                <p>Technical due diligence for acquisitions and investments. Deep experience from the $3B Apple/Beats deal and beyond.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience" id="experience">
+        <div class="experience-content">
+            <div>
+                <h2>Built at the intersection of <span class="highlight">music</span> and <span class="highlight">technology</span>.</h2>
+                <p>Two decades of engineering leadership at companies defining how the world experiences music. From building Beats Music through Apple's $3 billion acquisition to scaling Pandora Premium, I've led teams through hyper-growth, pivots, and transformative exits.</p>
+                <p>Now I bring that experience to founders and companies ready to scale thoughtfully and sustainably.</p>
+            </div>
+            <div class="logo-grid">
+                <div class="logo-item">Apple</div>
+                <div class="logo-item">Beats Music</div>
+                <div class="logo-item">Pandora</div>
+                <div class="logo-item">SoundCloud</div>
+                <div class="logo-item">UnitedMasters</div>
+                <div class="logo-item">Dwell</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="testimonial-content">
+            <svg class="testimonial-asterisk" viewBox="0 0 100 100" fill="currentColor">
+                <rect x="40" y="5" width="20" height="90" rx="2"/>
+                <rect x="5" y="40" width="90" height="20" rx="2"/>
+                <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(45 50 50)"/>
+                <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(-45 50 50)"/>
+            </svg>
+            <blockquote>"Bobby brings a rare combination of technical depth and strategic vision. He helped us navigate critical architectural decisions while building a world-class engineering culture."</blockquote>
+            <cite>
+                <strong>Engineering Leader</strong>
+                Music Technology Startup
+            </cite>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="bobby-gaza.jpg" alt="Bobby Gaza" class="about-photo">
+            </div>
+            <div class="about-text">
+                <h2>Hi, I'm <span class="highlight">Bobby Gaza</span>.</h2>
+                <p><strong>Kapwa</strong> is a Filipino concept meaning "shared identity" — the recognition that we are connected and rise together. It's the philosophy behind how I work: your success is my success.</p>
+                <p>As SVP of Engineering at Beats Music, I scaled the team from under 10 to 110 engineers and helped navigate the acquisition by Apple. At Pandora, I launched Pandora Premium. I've been CTO at multiple startups and advised companies on everything from seed stage to IPO.</p>
+                <p>Today, I partner with select companies as a fractional CTO through Kapwa Labs, and as VP of Client Strategy at <strong>SPAN Digital</strong>, a technology consulting firm.</p>
+                <p>When I'm not working, you'll find me cycling through the Bay Area hills or spending time with my family in Oakland.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>Let's build something great.</h2>
+        <p>Whether you're scaling your first engineering team or preparing for your next funding round, I'd love to hear about your challenges.</p>
+        <a href="/cdn-cgi/l/email-protection#21434e434358614a405156404d4043520f424e4c" class="cta-button">
+            Get in Touch
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </section>
+
+    <footer>
+        <p>© 2025 Kapwa Labs. Oakland, California.</p>
+        <div class="footer-links">
+            <a href="https://linkedin.com/in/bobbygazatechnologist" target="_blank">LinkedIn</a>
+            <a href="/cdn-cgi/l/email-protection#55373a37372c153e34252234393437267b363a38">Email</a>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px'
+        };
+
+        const animateOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .stat, .logo-item').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(2
