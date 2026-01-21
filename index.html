@@ -209,7 +209,7 @@
 
         /* Stats Section */
         .stats {
-            padding: 2.5rem 4rem;
+            padding: 4.5rem 4rem;
             background: var(--color-sage);
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -341,35 +341,21 @@
 
         .logo-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            align-items: center;
         }
 
-        .logo-item {
-            background: rgba(255,255,255,0.06);
-            border-radius: 8px;
-            padding: 1.25rem 1.5rem;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .logo-item:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--color-accent);
-        }
-
-        .logo-item img {
+        .logo-grid img {
             width: 100%;
-            height: 24px;
-            object-fit: contain;
+            max-width: 120px;
+            height: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
             filter: brightness(0) invert(1);
-            opacity: 0.9;
         }
 
-        .logo-item:hover img {
+        .logo-grid img:hover {
             opacity: 1;
         }
 
@@ -538,6 +524,9 @@
                 grid-template-columns: 1fr;
                 gap: 3.5rem;
             }
+            .logo-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
@@ -568,7 +557,8 @@
                 padding: 4rem 1.5rem;
             }
             .logo-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
             }
             footer {
                 flex-direction: column;
@@ -662,21 +652,48 @@
         <div class="services-grid">
             <div class="service-card">
                 <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                </svg>
-                <h3>Technical Strategy</h3>
-                <p>Architecture reviews, technology roadmaps, and strategic planning aligned with your business goals and growth trajectory.</p>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                     <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                 </svg>
                 <h3>Team Building</h3>
-                <p>Hiring strategy, org design, and engineering culture development. Scale from 10 to 100 engineers without losing velocity.</p>
+                <p>Hiring strategy, org design, and engineering culture development. Scale from 10 to 100 engineers without losing velocity and your soul.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <h3>Interim CTO</h3>
+                <p>Step-in leadership when you need it — filling gaps, navigating transitions, or providing senior technical leadership while you find your permanent hire. Stop worrying you left the oven on at home.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <h3>Technical Strategy</h3>
+                <p>Architecture reviews, technology roadmaps, and strategic planning aligned with your business goals and growth trajectory. Boxes and arrows that all your teams will understand.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <h3>Board & Investor Readiness</h3>
+                <p>Technical due diligence, engineering narratives for fundraising, and board-level communication. Tell your technical story with confidence and not sell-out.</p>
+            </div>
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a4 4 0 0 1 4 4c0 1.1-.9 2-2 2h-4a2 2 0 0 1-2-2 4 4 0 0 1 4-4z"/>
+                    <path d="M12 8v6"/>
+                    <path d="M8 14h8"/>
+                    <path d="M6 18h12"/>
+                    <path d="M4 22h16"/>
+                </svg>
+                <h3>AI Integration</h3>
+                <p>Practical AI strategy for real teams. From integrating productivity tools to modernizing legacy systems with AI-assisted workflows — no hand waving.</p>
             </div>
             <div class="service-card">
                 <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -684,32 +701,7 @@
                     <polyline points="8 6 2 12 8 18"/>
                 </svg>
                 <h3>Engineering Excellence</h3>
-                <p>Process optimization, CI/CD pipelines, and engineering best practices that accelerate delivery and reduce technical debt.</p>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polygon points="10 8 16 12 10 16 10 8"/>
-                </svg>
-                <h3>Product Launch</h3>
-                <p>From MVP to scale-ready. Technical due diligence, launch preparation, and post-launch optimization strategies.</p>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                    <line x1="12" y1="22.08" x2="12" y2="12"/>
-                </svg>
-                <h3>Data & Cloud</h3>
-                <p>Data engineering strategy, cloud architecture, and infrastructure optimization. Modern stacks that scale efficiently.</p>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="1" x2="12" y2="23"/>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                </svg>
-                <h3>M&A Support</h3>
-                <p>Technical due diligence for acquisitions and investments. Deep experience from the $3B Apple/Beats deal and beyond.</p>
+                <p>Process optimization that works for your org. Real-world best practices that accelerate delivery, reduce technical debt, and hopefully gets you to 8hrs of sleep at night.</p>
             </div>
         </div>
     </section>
@@ -717,25 +709,25 @@
     <section class="experience" id="experience">
         <div class="experience-content">
             <div>
-                <h2>20+ years of building iconic platforms for <span class="highlight">creators</span> and the <span class="highlight">people</span> who love them</span></h2>
+                <h2>20+ years of building iconic platforms for <span class="highlight">creators</span> and the people who love them.</h2>
                 <p>Two decades leading engineering teams at platforms that shaped how people discover, consume, and connect — from music streaming pioneers like Beats, Pandora, and SoundCloud, to media destinations like CNET, GameSpot, and Yahoo, to education at GreatSchools.</p>
                 <p>Products used by hundreds of millions, through hyper-growth, acquisitions, and IPOs.</p>
                 <p>Now I help founders scale the same way.</p>
             </div>
             <div class="logo-grid">
-                <div class="logo-item"><img src="logos/apple.svg" alt="Apple"></div>
-                <div class="logo-item"><img src="logos/beats-music.svg" alt="Beats Music"></div>
-                <div class="logo-item"><img src="logos/pandora.svg" alt="Pandora"></div>
-                <div class="logo-item"><img src="logos/soundcloud.svg" alt="SoundCloud"></div>
-                <div class="logo-item"><img src="logos/unitedmasters.svg" alt="UnitedMasters"></div>
-                <div class="logo-item"><img src="logos/dwell.svg" alt="Dwell"></div>
-                <div class="logo-item"><img src="logos/cnet.svg" alt="CNET"></div>
-                <div class="logo-item"><img src="logos/mp3.svg" alt="MP3.com"></div>
-                <div class="logo-item"><img src="logos/gamespot.svg" alt="GameSpot"></div>
-                <div class="logo-item"><img src="logos/tv.svg" alt="TV.com"></div>
-                <div class="logo-item"><img src="logos/greatschools.svg" alt="GreatSchools!"></div>
-                <div class="logo-item"><img src="logos/yahoo.svg" alt="Yahoo!"></div>
-                <div class="logo-item"><img src="logos/thismoment.svg" alt="thisMoment"></div>
+                <img src="logos/apple.svg" alt="Apple">
+                <img src="logos/beats-music.svg" alt="Beats Music">
+                <img src="logos/pandora.svg" alt="Pandora">
+                <img src="logos/soundcloud.svg" alt="SoundCloud">
+                <img src="logos/unitedmasters.svg" alt="UnitedMasters">
+                <img src="logos/dwell.svg" alt="Dwell">
+                <img src="logos/cnet.svg" alt="CNET">
+                <img src="logos/mp3.svg" alt="MP3.com">
+                <img src="logos/gamespot.svg" alt="GameSpot">
+                <img src="logos/tv.svg" alt="TV.com">
+                <img src="logos/greatschools.svg" alt="GreatSchools">
+                <img src="logos/yahoo.svg" alt="Yahoo">
+                <img src="logos/thismoment.svg" alt="thisMoment">
             </div>
         </div>
     </section>
@@ -747,8 +739,8 @@
                 <rect x="5" y="40" width="90" height="20" rx="2"/>
                 <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(45 50 50)"/>
                 <rect x="40" y="5" width="20" height="90" rx="2" transform="rotate(-45 50 50)"/>
-            </svg> <!--
-            <blockquote>"Bobby brings a rare combination of technical depth and strategic vision. He helped us navigate critical architectural decisions while building a world-class engineering culture."</blockquote>
+            </svg>
+            <!--<blockquote>"Bobby brings a rare combination of technical depth and strategic vision. He helped us navigate critical architectural decisions while building a world-class engineering culture."</blockquote>
             <cite>
                 <strong>Engineering Leader</strong>
                 Music Technology Startup
@@ -774,7 +766,7 @@
     <section class="cta-section" id="contact">
         <h2>Let's build something great.</h2>
         <p>Whether you're scaling your first engineering team or preparing for your next funding round, I'd love to hear about your challenges.</p>
-        <a href="mailto:info@kapwalabs.com" class="cta-button">
+        <a href="mailto:info@kapwa.dev" class="cta-button">
             Get in Touch
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -786,7 +778,7 @@
         <p>© 2025 Kapwa Labs. Oakland, California.</p>
         <div class="footer-links">
             <a href="https://linkedin.com/in/bobbygaza" target="_blank">LinkedIn</a>
-            <a href="mailto:info@kapwalabs.com">Email</a>
+            <a href="mailto:info@kapwa.dev">Email</a>
         </div>
     </footer>
 
@@ -818,8 +810,4 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .stat, .logo-item').forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(2
+        }, ob
