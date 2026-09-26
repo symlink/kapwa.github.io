@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find your speed | kapwa</title>
+<meta name="description" content="Tap what's on your mind and find the right kind of session with Kapwa: a focused sprint, fractional leadership, or a standing session.">
+<meta property="og:title" content="Find your speed | kapwa">
+<meta property="og:description" content="Tap what's on your mind. We'll suggest a speed: SP, LP or EP.">
+<meta property="og:url" content="https://kapwa.dev/find-your-speed.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kapwa.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F2EBDC">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F2EBDC; --card:#F8F4EA; --ink:#1B1816; --ink-2:#3A342F; --muted:#5A524A;
+  --s1:#F3B63F; --s2:#EF8A32; --s3:#E4573A; --s4:#C93A45; --s5:#9C2C57; --s6:#5C2452;
+  --sans:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.app{max-width:1040px;margin:0 auto;padding:40px 20px 32px;display:flex;flex-direction:column;gap:20px;min-height:100%}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0}
+.counter{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:2px;color:var(--card);background:var(--ink);padding:5px 9px;border-radius:4px;font-variant-numeric:tabular-nums}
+h1{margin:0;font-size:clamp(34px,5.4vw,60px);line-height:.95;letter-spacing:-.04em;text-wrap:balance}
+.hint{margin:0;font-size:17px;line-height:1.5;color:var(--ink-2);max-width:62ch}
+.hint b{color:var(--ink)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:12px}
+.legend i{display:inline-block;border-radius:50%;border:2px solid var(--ink)}
+
+.stage{position:relative;height:clamp(420px,58vh,560px);border:2px solid var(--ink);border-radius:8px;background:var(--card);overflow:hidden;touch-action:manipulation}
+.bub{position:absolute;left:0;top:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;
+  font-family:var(--sans);font-weight:700;line-height:1.1;letter-spacing:-.01em;color:var(--ink);background:var(--paper);border:2px solid var(--ink);
+  cursor:pointer;user-select:none;-webkit-user-select:none;will-change:transform;transition:background .18s, color .18s, box-shadow .18s, opacity .3s;
+  -webkit-tap-highlight-color:transparent}
+.bub:focus-visible{outline:3px solid var(--s3);outline-offset:3px}
+.bub[data-state="1"]{box-shadow:0 4px 0 var(--ink)}
+.bub[data-state="2"]{box-shadow:0 0 0 5px var(--card),0 0 0 8px var(--ink),0 5px 0 5px var(--ink)}
+.bub.gone{opacity:0;pointer-events:none}
+.bub .fill{position:absolute;inset:0;border-radius:50%;pointer-events:none}
+.bub .t{position:relative}
+.bub .heart{position:absolute;top:10%;font-family:var(--mono);font-size:10px;letter-spacing:1px}
+
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.dots{display:flex;gap:8px;align-items:center}
+.dots i{width:28px;height:6px;border-radius:3px;background:#D9CFBC}
+.dots i.on{background:var(--ink)}
+.picked{font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.actions{display:flex;gap:12px;align-items:center}
+.ghost{font:inherit;font-weight:600;font-size:15px;background:none;border:0;border-bottom:2px solid var(--ink);padding:8px 2px;cursor:pointer;color:var(--ink)}
+.ghost:disabled{opacity:.35;cursor:default}
+.play{display:inline-flex;align-items:stretch;overflow:hidden;font:inherit;font-weight:700;font-size:17px;letter-spacing:-.01em;color:var(--ink);border:0;border-radius:4px;cursor:pointer;padding:0;text-decoration:none;
+  background:linear-gradient(180deg,#F7C865 0%,#F3B63F 55%,#EAA532 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(27,24,22,.12);transition:filter .15s, transform .08s}
+.play:hover{filter:brightness(1.05)}
+.play:active{transform:translateY(1px)}
+.play:focus-visible{outline:3px solid var(--s3);outline-offset:3px}
+.play .lbl{padding:11px 16px 11px 18px}
+.play .arr{display:flex;align-items:center;justify-content:center;width:34px;border-left:1.5px solid var(--ink);font-size:11px}
+.play:disabled{filter:grayscale(.6) opacity(.5);cursor:default}
+
+/* result */
+.result{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start}
+.tape{border:2px solid var(--ink);border-radius:8px;background:var(--ink);color:var(--paper);overflow:hidden}
+.tape .head{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:2px solid #4A423C;font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+.tape .head em{font-style:normal;display:flex;gap:4px}.tape .head em i{width:12px;height:12px;display:block}
+.tape .body{padding:24px 20px 28px;display:flex;flex-direction:column;gap:12px}
+.tape .big{font-weight:700;font-size:clamp(72px,11vw,112px);line-height:.9;letter-spacing:-.04em}
+.tape h2{margin:0;font-size:26px;letter-spacing:-.02em}
+.tape p{margin:0;font-size:17px;line-height:1.55;color:#D9D0BF}
+.meter{display:flex;flex-direction:column;gap:10px;padding:20px;border:2px solid var(--ink);border-radius:8px;background:var(--card)}
+.meter .row{display:grid;grid-template-columns:34px 1fr 42px;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;font-weight:600}
+.meter .track{height:12px;border-radius:6px;background:#E6DCC8;overflow:hidden}
+.meter .track b{display:block;height:100%;border-radius:6px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.meter .pct{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.meter h3{margin:0 0 4px;font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:500}
+.tracklist{margin:8px 0 0;padding:14px 0 0;border-top:1px dashed var(--ink);list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.tracklist li{font-size:13px;font-weight:600;padding:5px 10px;border-radius:999px;border:1.5px solid var(--ink);background:var(--paper)}
+.tracklist li.love{background:var(--ink);color:var(--paper)}
+.send{font-size:13px;line-height:1.5;color:var(--muted);margin:0}
+.send code{font-family:var(--mono);font-size:12px;color:var(--ink)}
+@media (max-width:760px){.result{grid-template-columns:1fr}.app{padding-top:28px}}
+@media (prefers-reduced-motion: reduce){.bub,.meter .track b,.play{transition:none}}
+.site-top{max-width:1040px;margin:0 auto;padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.site-top .home{display:block;line-height:0}
+.site-top .home svg{width:96px;height:auto}
+.site-top .back{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--ink);padding:6px 0}
+.site-top .back:hover{color:#9C2C57;border-color:#9C2C57}
+.app{padding-top:24px}
+.embed .site-top{display:none}
+.embed .app{padding-top:20px;gap:14px}
+.embed h1{font-size:clamp(30px,4.2vw,48px)}
+.embed .hint{font-size:16px}
+.embed .stage{height:clamp(300px,calc(100vh - 360px),540px)}
+.embed .top .eyebrow{visibility:hidden}
+@media (max-width:600px){.embed .stage{height:max(280px,calc(100vh - 430px))}.embed .legend{gap:8px 14px;font-size:11px}}
+</style>
+</head>
+<body>
+<script>if (location.hash === '#embed') document.documentElement.classList.add('embed');</script>
+<header class="site-top">
+  <a class="home" href="./" aria-label="kapwa home"><svg viewBox="85 40 282 93" role="img" aria-label="kapwa"><path fill="#1B1816" d="M85.4 114.0H98.7V88.1L117.6 114.0H135.5L112.5 85.7L132.3 58.5H116.4L98.7 84.7V40.0H85.4Z M186.1 58.5H173.9V66.0C169.3 59.9 163.8 57.3 155.8 57.3C139.4 57.3 127.6 69.6 127.6 86.5C127.6 103.2 139.2 115.3 155.5 115.3C163.3 115.3 168.6 112.9 173.9 106.8V114.0H186.1ZM157.2 69.5C166.7 69.5 173.5 76.6 173.5 86.7C173.5 90.7 171.9 95.3 169.5 98.1C166.8 101.4 162.5 103.1 157.4 103.1C147.7 103.1 141.0 96.5 141.0 86.8C141.0 76.6 147.7 69.5 157.2 69.5Z M187.0 132.5H200.2V108.8C205.4 113.3 210.5 115.3 217.3 115.3C233.3 115.3 245.0 102.9 245.0 86.1C245.0 69.4 233.4 57.3 217.5 57.3C209.9 57.3 203.5 60.0 199.2 65.1V58.5H187.0ZM215.7 69.5C224.7 69.5 231.6 76.8 231.6 86.4C231.6 95.8 224.7 103.1 215.9 103.1C206.5 103.1 199.5 95.9 199.5 86.2C199.5 76.6 206.5 69.5 215.7 69.5Z M257.3 114.0H265.5L276.2 78.1L286.7 114.0H295.0L315.0 58.5H300.8L290.7 92.4L281.6 58.5H271.0L261.7 92.4L251.8 58.5H237.5Z M366.4 58.5H354.2V66.0C349.5 59.9 344.0 57.3 336.0 57.3C319.7 57.3 307.9 69.6 307.9 86.5C307.9 103.2 319.5 115.3 335.7 115.3C343.5 115.3 348.9 112.9 354.2 106.8V114.0H366.4ZM337.5 69.5C347.0 69.5 353.7 76.6 353.7 86.7C353.7 90.7 352.2 95.3 349.7 98.1C347.0 101.4 342.7 103.1 337.7 103.1C328.0 103.1 321.2 96.5 321.2 86.8C321.2 76.6 328.0 69.5 337.5 69.5Z"/></svg></a>
+  <a class="back" href="./#speeds">Back to kapwa.dev</a>
+</header>
+<main class="app" id="app">
+  <div class="top"><p class="eyebrow" id="eyebrow">Kapwa · Find your speed</p><span class="counter" id="counter">TRACK 1/3</span></div>
+  <h1 id="title">What's on your mind?</h1>
+  <p class="hint" id="hint"></p>
+  <div class="legend" id="legend">
+    <span><i style="width:14px;height:14px;background:var(--s3)"></i>Tap: yes</span>
+    <span><i style="width:18px;height:18px;background:var(--s5);box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--ink)"></i>Tap twice: this one's urgent</span>
+    <span><i style="width:14px;height:14px;background:var(--paper);opacity:.5"></i>Hold: not for me</span>
+  </div>
+  <div class="stage" id="stage" role="group" aria-label="Choices"></div>
+  <div class="bar">
+    <div class="dots" id="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <span class="picked" id="picked" aria-live="polite">Nothing picked yet</span>
+    <div class="actions">
+      <button class="ghost" id="back" type="button">Back</button>
+      <button class="play" id="next" type="button"><span class="lbl">Next track</span><span class="arr" aria-hidden="true">▶</span></button>
+    </div>
+  </div>
+</main>
+<script>
+(() => {
+  // weights: [SP, LP, EP]
+  const STEPS = [
+    { title: "What's on your mind?", hint: "Pick the challenges your team is feeling right now. There are no wrong answers, and you can pick as many as you like.",
+      items: [
+        ["Architecture is a mess", [3, 1, 0]],
+        ["Shipping feels slow", [1, 3, 1]],
+        ["We need a CTO, now", [0, 4, 0]],
+        ["Scaling the team", [0, 3, 1]],
+        ["Hiring builders", [1, 2, 1]],
+        ["Hiring leaders", [1, 2, 1]],
+        ["AI: where do we start?", [3, 1, 1]],
+        ["Board or investor prep", [3, 0, 1]],
+        ["Technical due diligence", [4, 0, 0]],
+        ["Legacy systems", [2, 2, 0]],
+        ["Teams talk past each other", [0, 2, 2]],
+        ["Siloed teams", [0, 2, 2]],
+        ["Fans and creators", [1, 1, 2]],
+        ["Culture and morale", [0, 2, 2]],
+        ["Roadmap and priorities", [2, 1, 2]]
+      ] },
+    { title: "What kind of help sounds right?", hint: "How would you want someone like us in the room?",
+      items: [
+        ["A second opinion", [3, 0, 1]],
+        ["Someone in the seat", [0, 4, 0]],
+        ["A sounding board", [0, 0, 4]],
+        ["A plan with a deadline", [4, 0, 0]],
+        ["Hands-on leadership", [0, 3, 1]],
+        ["Coaching my leaders", [0, 1, 3]],
+        ["Help me hire my CTO", [1, 2, 1]],
+        ["Advice, anytime", [0, 1, 3]]
+      ] },
+    { title: "When do you need it?", hint: "Pick the run time that fits.",
+      items: [
+        ["This month", [3, 1, 0]],
+        ["This quarter", [1, 3, 0]],
+        ["This year", [0, 2, 2]],
+        ["Ongoing", [0, 1, 4]],
+        ["Not sure yet", [1, 1, 1]]
+      ] }
+  ];
+  const SPEEDS = {
+    SP: { name: "Standard play", title: "A focused sprint", run: "Weeks", sw: ["#F3B63F"],
+          copy: "Short run, highest fidelity. A clear question and a clear finish line: an architecture review, due diligence, AI readiness, or board prep." },
+    LP: { name: "Long play", title: "Fractional leadership", run: "Months", sw: ["#EF8A32", "#E4573A"],
+          copy: "A seat at the table while you build the permanent team. Team building, technical strategy, AI integration and delivery, week in and week out." },
+    EP: { name: "Extended play", title: "A standing session", run: "Ongoing", sw: ["#C93A45", "#9C2C57", "#5C2452"],
+          copy: "Longest run, lightest touch. A sounding board for founders, leaders and boards as the company grows." }
+  };
+  const COLORS = ["#F3B63F","#EF8A32","#E4573A","#C93A45","#9C2C57","#5C2452"];
+  const DARK_TEXT = new Set(["#F3B63F","#EF8A32"]);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+  const stage = $('stage');
+  let step = 0, bubbles = [], raf = 0;
+  const picks = STEPS.map(s => s.items.map(() => 0)); // 0 none, 1 yes, 2 urgent, -1 passed
+
+  function radiusFor(label, state, W){
+    const base = Math.max(40, Math.min(62, 26 + label.length * 1.6)) * (W < 520 ? .78 : 1);
+    return state === 2 ? base * 1.45 : state === 1 ? base * 1.2 : base;
+  }
+  function paint(b){
+    const st = picks[step][b.i];
+    b.el.dataset.state = String(Math.max(0, st));
+    const col = COLORS[b.i % COLORS.length];
+    b.el.style.background = st > 0 ? col : 'var(--paper)';
+    b.el.style.color = st > 0 && !DARK_TEXT.has(col) ? '#FFFFFF' : 'var(--ink)';
+    b.el.classList.toggle('gone', st === -1);
+    b.el.setAttribute('aria-pressed', st > 0 ? 'true' : 'false');
+    b.el.setAttribute('aria-label', b.label + (st === 2 ? ', urgent' : st === 1 ? ', selected' : st === -1 ? ', passed' : ''));
+    b.heart.textContent = st === 2 ? 'URGENT' : '';
+    b.tr = radiusFor(b.label, st, stage.clientWidth);
+  }
+  function build(){
+    stage.innerHTML = ''; bubbles = [];
+    const W = stage.clientWidth, H = stage.clientHeight, items = STEPS[step].items;
+    items.forEach(([label], i) => {
+      const el = document.createElement('button');
+      el.type = 'button'; el.className = 'bub';
+      el.innerHTML = '<span class="heart"></span><span class="t"></span>';
+      el.querySelector('.t').textContent = label;
+      stage.appendChild(el);
+      const ang = (i / items.length) * Math.PI * 2 + Math.random() * .4;
+      const b = { el, i, label, heart: el.querySelector('.heart'),
+        x: W/2 + Math.cos(ang) * W * .6, y: H/2 + Math.sin(ang) * H * .6, vx: 0, vy: 0, r: 10, tr: 40, seed: Math.random() * 1000 };
+      paint(b); b.r = reduce ? b.tr : 8;
+      if (reduce) { b.x = W/2 + Math.cos(ang) * W * .3; b.y = H/2 + Math.sin(ang) * H * .3; }
+      bindPress(b); bubbles.push(b);
+    });
+    if (reduce) for (let k = 0; k < 300; k++) tick(0, true);
+    loop();
+  }
+  function bindPress(b){
+    let timer = 0, held = false;
+    const down = e => { if (e.button > 0) return; held = false; clearTimeout(timer);
+      timer = setTimeout(() => { held = true; picks[step][b.i] = -1; paint(b); update(); if (navigator.vibrate) try { navigator.vibrate(15); } catch(_){} }, 520); };
+    const up = () => clearTimeout(timer);
+    b.el.addEventListener('pointerdown', down);
+    ['pointerup','pointerleave','pointercancel'].forEach(t => b.el.addEventListener(t, up));
+    b.el.addEventListener('contextmenu', e => e.preventDefault());
+    b.el.addEventListener('click', () => { if (held) { held = false; return; }
+      const s = picks[step][b.i]; picks[step][b.i] = s === 0 ? 1 : s === 1 ? 2 : 0; paint(b); update(); });
+    b.el.addEventListener('keydown', e => { if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); picks[step][b.i] = -1; paint(b); update(); } });
+  }
+  function tick(t, settle){
+    const W = stage.clientWidth, H = stage.clientHeight, cx = W/2, cy = H/2;
+    for (const b of bubbles) {
+      b.r += (b.tr - b.r) * (settle ? 1 : .16);
+      const pull = picks[step][b.i] === -1 ? 0 : .007;
+      b.vx += (cx - b.x) * pull; b.vy += (cy - b.y) * pull * 1.35;
+      if (!reduce && !settle) { b.vx += Math.sin(t/1400 + b.seed) * .018; b.vy += Math.cos(t/1700 + b.seed) * .018; }
+    }
+    for (let i = 0; i < bubbles.length; i++) for (let j = i + 1; j < bubbles.length; j++) {
+      const a = bubbles[i], c = bubbles[j];
+      if (picks[step][a.i] === -1 || picks[step][c.i] === -1) continue;
+      const dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy) || .01, min = a.r + c.r + 8;
+      if (d < min) { const push = (min - d) / d * .5, px = dx * push, py = dy * push; a.x -= px; a.y -= py; c.x += px; c.y += py; }
+    }
+    for (const b of bubbles) {
+      b.vx *= .86; b.vy *= .86; b.x += b.vx; b.y += b.vy;
+      b.x = Math.max(b.r + 4, Math.min(W - b.r - 4, b.x)); b.y = Math.max(b.r + 4, Math.min(H - b.r - 4, b.y));
+      const s = b.r * 2; b.el.style.width = s + 'px'; b.el.style.height = s + 'px';
+      b.el.style.fontSize = Math.max(11, Math.min(17, b.r * .27)) + 'px';
+      b.el.style.transform = `translate(${b.x - b.r}px, ${b.y - b.r}px)`;
+    }
+  }
+  function loop(){ cancelAnimationFrame(raf); const f = t => { tick(t); raf = requestAnimationFrame(f); }; raf = requestAnimationFrame(f); }
+
+  function update(){
+    const n = picks[step].filter(v => v > 0).length, u = picks[step].filter(v => v === 2).length;
+    $('picked').textContent = n ? `${n} picked${u ? ` · ${u} urgent` : ''}` : 'Nothing picked yet';
+    $('next').disabled = n === 0;
+  }
+  function renderStep(){
+    const s = STEPS[step];
+    $('title').textContent = s.title;
+    $('hint').innerHTML = s.hint + ' <b>Tap</b> for yes, <b>tap twice</b> if it’s urgent, <b>hold</b> to pass.';
+    $('counter').textContent = `TRACK ${step + 1}/${STEPS.length}`;
+    $('dots').innerHTML = STEPS.map((_, i) => `<i class="${i <= step ? 'on' : ''}"></i>`).join('');
+    $('back').disabled = step === 0;
+    $('next').querySelector('.lbl').textContent = step === STEPS.length - 1 ? 'Hear your speed' : 'Next track';
+    build(); update();
+  }
+  function score(){
+    const tot = [0,0,0]; const chosen = [];
+    STEPS.forEach((s, si) => s.items.forEach(([label, w], ii) => { const v = picks[si][ii];
+      if (v > 0) { w.forEach((x, k) => tot[k] += x * v); chosen.push({ label, v }); } }));
+    const sum = tot.reduce((a, b) => a + b, 0) || 1;
+    const keys = ['SP','LP','EP']; let best = 0; tot.forEach((x, k) => { if (x > tot[best]) best = k; });
+    return { key: keys[best], pct: tot.map(x => Math.round(x / sum * 100)), chosen };
+  }
+  function renderResult(){
+    cancelAnimationFrame(raf);
+    const r = score(), sp = SPEEDS[r.key];
+    const body = encodeURIComponent(`Hi Bobby,\n\nI took the "Find your speed" quiz on kapwa.dev and landed on ${r.key} (${sp.title}).\n\nWhat's on my mind:\n${r.chosen.map(c => `- ${c.label}${c.v === 2 ? ' (urgent)' : ''}`).join('\n')}\n\nA bit about us:\n`);
+    const href = `mailto:info@kapwa.dev?subject=${encodeURIComponent(`Kapwa session: ${r.key} (${sp.title})`)}&body=${body}`;
+    const app = $('app');
+    app.innerHTML = `
+      <div class="top"><p class="eyebrow">Kapwa · Find your speed</p><span class="counter">END OF SIDE A</span></div>
+      <h1>Your speed is ${r.key}.</h1>
+      <p class="hint">Based on what you picked, here's where we'd start. It's a starting point for a conversation, not a contract.</p>
+      <div class="result">
+        <article class="tape">
+          <div class="head"><span>${sp.name} · ${sp.run}</span><em aria-hidden="true">${sp.sw.map(c => `<i style="background:${c}"></i>`).join('')}</em></div>
+          <div class="body"><div class="big">${r.key}</div><h2>${sp.title}</h2><p>${sp.copy}</p></div>
+        </article>
+        <div class="meter">
+          <h3>Your mix</h3>
+          ${['SP','LP','EP'].map((k, i) => `<div class="row"><span>${k}</span><span class="track"><b style="width:0;background:${SPEEDS[k].sw[SPEEDS[k].sw.length - 1]}" data-w="${r.pct[i]}"></b></span><span class="pct">${r.pct[i]}%</span></div>`).join('')}
+          <ul class="tracklist" aria-label="What you picked">${r.chosen.map(c => `<li class="${c.v === 2 ? 'love' : ''}">${c.label}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="bar">
+        <p class="send">Starts an email to <code>info@kapwa.dev</code> with your picks already filled in.</p>
+        <div class="actions">
+          <button class="ghost" id="again" type="button">Play it again</button>
+          <a class="play" href="${href}" target="_top"><span class="lbl">Start an ${r.key} session</span><span class="arr" aria-hidden="true">▶</span></a>
+        </div>
+      </div>`;
+    requestAnimationFrame(() => requestAnimationFrame(() => app.querySelectorAll('.meter .track b').forEach(b => b.style.width = b.dataset.w + '%')));
+    $('again').addEventListener('click', () => location.reload());
+  }
+  $('next').addEventListener('click', () => { if (step < STEPS.length - 1) { step++; renderStep(); } else renderResult(); });
+  $('back').addEventListener('click', () => { if (step > 0) { step--; renderStep(); } });
+  addEventListener('resize', () => bubbles.forEach(paint));
+
+  renderStep();
+  if (location.hash === '#embed') addEventListener('keydown', e => { if (e.key === 'Escape') parent.postMessage('fys-close', location.origin === 'null' ? '*' : location.origin); });
+})();
+</script>
+</body>
+</html>
