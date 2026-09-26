@@ -58,13 +58,10 @@ p{margin:0}
 .bandfull i{height:calc(11px * var(--k))}
 .logo{position:absolute;left:var(--g);top:calc(30px * var(--k));height:calc(150px * var(--k));width:calc(290px * var(--k));display:block}
 .logo svg{width:100%;height:100%;display:block}
-.nav{position:absolute;right:0;top:calc(114px * var(--k));height:calc(66px * var(--k));width:760px;padding-right:var(--g);display:flex;align-items:center;justify-content:flex-end;gap:32px;
-  background-color:var(--ink);background-image:repeating-linear-gradient(0deg,rgba(242,235,220,.07) 0 2px,transparent 2px 14px),repeating-linear-gradient(90deg,rgba(242,235,220,.07) 0 2px,transparent 2px 14px);
-  clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase}
-.nav a{text-decoration:none;color:var(--paper);padding:13px 0}
-.nav a:hover{color:var(--s1)}
-.nav a.cta{color:var(--ink);background:var(--s1);padding:13px 18px;border-radius:4px}
-.nav a.cta:hover{color:var(--ink);background:#f7c666}
+.nav{position:absolute;z-index:30;isolation:isolate;right:0;top:calc(114px * var(--k));height:calc(66px * var(--k));width:760px;padding-right:var(--g);display:flex;align-items:center;justify-content:flex-end;gap:32px;font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background-color:var(--ink);background-image:repeating-linear-gradient(0deg,rgba(242,235,220,.07) 0 2px,transparent 2px 14px),repeating-linear-gradient(90deg,rgba(242,235,220,.07) 0 2px,transparent 2px 14px);clip-path:polygon(12% 0,100% 0,100% 100%,0 100%)}
+.nav > a{text-decoration:none;color:var(--paper);padding:13px 0}
+.nav > a:hover{color:var(--s1)}
 
 /* Hero */
 .hero{padding-top:80px;display:flex;justify-content:space-between;align-items:flex-start;gap:64px}
@@ -72,18 +69,22 @@ p{margin:0}
 .hero h1{font-size:clamp(48px,7vw,88px);line-height:.92;letter-spacing:-.045em}
 .hero .sub{font-size:clamp(19px,2vw,24px);line-height:1.45;max-width:700px;color:var(--ink-2)}
 .btns{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.btn{text-decoration:none;background:var(--ink);color:var(--paper);font-weight:600;font-size:18px;padding:18px 30px;border-radius:4px}
-.btn:hover{color:var(--paper);background:#3A342F}
 .link{text-decoration:none;font-weight:600;font-size:18px;padding:18px 8px;border-bottom:2px solid var(--ink)}
-.deck{width:320px;flex-shrink:0;border:2px solid var(--ink);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:16px;background:var(--card);font-family:var(--mono);margin-top:44px}
-.deck .row{display:flex;justify-content:space-between;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
-.deck .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.deck .val{font-size:15px;font-weight:600;padding-bottom:6px;border-bottom:1px dashed var(--ink)}
-.deck .speeds{display:flex;gap:18px;font-size:13px;font-weight:600}
-.deck .speeds span{display:flex;align-items:center;gap:7px}
-.deck .box{width:12px;height:12px;border:2px solid var(--ink)}
-.deck .box.on{background:var(--ink)}
-.deck hr{border:0;height:1px;background:var(--ink);margin:0}
+.jcard{width:320px;flex-shrink:0;border:2px solid var(--ink);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:16px;background:var(--card);font-family:var(--mono);margin-top:44px}
+.jcard .row{display:flex;justify-content:space-between;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+.jcard .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.jcard .val{font-size:15px;font-weight:600;padding-bottom:6px;border-bottom:1px dashed var(--ink)}
+.jc-speeds{position:relative;display:flex;gap:6px;margin-left:-6px}
+.jc-sp{display:flex;align-items:center;gap:7px;font:inherit;font-size:13px;font-weight:600;color:var(--ink);background:none;border:0;border-radius:4px;padding:6px;cursor:pointer}
+.jc-sp .box{width:12px;height:12px;border:2px solid var(--ink);background:transparent;transition:background .15s}
+.jc-speeds:not(.picked):not(.open) .jc-sp[data-speed="SP"] .box{background:var(--ink)}
+.jc-speeds .jc-sp.on .box{background:var(--s1)}
+.jc-sp:hover{background:rgba(27,24,22,.06)}
+.jc-sp:focus-visible{outline:3px solid var(--s3);outline-offset:1px}
+.jc-speeds .menu{left:-18px;right:auto;font-family:var(--sans);text-transform:none;letter-spacing:normal}
+.jc-speeds.open .menu{opacity:1;transform:none;visibility:visible;transition:opacity .14s, transform .14s}
+.menu > a.hl{background:#EFE6D2}
+.jcard hr{border:0;height:1px;background:var(--ink);margin:0}
 
 /* Counters */
 .counters{max-width:1440px;margin:56px auto 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
@@ -152,8 +153,6 @@ p{margin:0}
 .contact-body .t{display:flex;flex-direction:column;gap:24px}
 .contact h2{font-size:clamp(52px,7.5vw,104px);line-height:.92;letter-spacing:-3px}
 .contact .t p{font-size:22px;color:var(--on-dk)}
-.btn-y{flex-shrink:0;text-decoration:none;background:var(--s1);color:var(--ink);font-weight:600;font-size:20px;padding:22px 36px;border-radius:4px}
-.btn-y:hover{color:var(--ink);background:#f7c666}
 .foot{border-top:1px solid var(--line-dk)}
 .foot .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;align-items:center;gap:24px;font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--on-dk-2)}
 .foot nav{display:flex;gap:32px}
@@ -161,12 +160,73 @@ p{margin:0}
 .foot a{color:var(--paper);text-decoration:none;padding:12px 0}
 .foot a:hover{color:var(--s1)}
 
+
+/* Start a session: play key with speed menu */
+.split{position:relative;display:inline-flex;flex-shrink:0;font-family:var(--sans);text-transform:none;letter-spacing:normal}
+.e{display:inline-flex;align-items:stretch;overflow:hidden;font-weight:700;font-size:17px;letter-spacing:-.01em;color:var(--ink);border-radius:4px;
+  background:linear-gradient(180deg,#F7C865 0%,#F3B63F 55%,#EAA532 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(27,24,22,.12);transition:filter .15s, transform .08s}
+.e:hover{filter:brightness(1.05)}
+.e:active{transform:translateY(1px)}
+.e .lbl{display:flex;align-items:center;padding:11px 16px 11px 18px;color:var(--ink);text-decoration:none}
+.e .lbl:hover{color:var(--ink)}
+.e .arr{display:flex;align-items:center;justify-content:center;width:34px;font:inherit;font-size:11px;color:var(--ink);background:transparent;border:0;border-left:1.5px solid var(--ink);cursor:pointer;padding:0;transition:background .15s}
+.e .arr:hover{background:rgba(27,24,22,.06)}
+.e .arr span{display:inline-block;transition:transform .2s}
+.e .arr:hover span{transform:translateX(2px)}
+.e a:focus-visible,.e .arr:focus-visible{outline:3px solid var(--s3);outline-offset:-3px}
+.split.open .e .arr{background:rgba(27,24,22,.1)}
+.split.open .e .arr span{transform:rotate(90deg)}
+.e.sm{font-size:13px}
+.e.sm .lbl{padding:7px 11px 7px 13px}
+.e.sm .arr{width:26px;font-size:9px}
+.menu{position:absolute;right:0;top:calc(100% + 8px);z-index:40;width:320px;max-width:calc(100vw - 32px);background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:6px;
+  box-shadow:0 6px 0 var(--ink);padding:6px;display:flex;flex-direction:column;gap:2px;text-align:left;
+  opacity:0;transform:translateY(-4px);visibility:hidden;transition:opacity .14s, transform .14s, visibility 0s .14s}
+.split.up .menu{top:auto;bottom:calc(100% + 8px);transform:translateY(4px)}
+.split.open .menu{opacity:1;transform:none;visibility:visible;transition:opacity .14s, transform .14s}
+.dark .menu{border-color:var(--card);box-shadow:0 6px 0 #4A423C}
+.menu .hd{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px 6px}
+.menu > a{display:grid;grid-template-columns:44px 1fr 30px;align-items:center;gap:12px;padding:10px;border-radius:4px;text-decoration:none;color:var(--ink)}
+.menu > a:hover,.menu > a:focus-visible{background:#EFE6D2;color:var(--ink);outline:none}
+.menu .sp{font-weight:700;font-size:22px;letter-spacing:-.02em;line-height:1}
+.menu .tx{display:flex;flex-direction:column;gap:2px}
+.menu .tx b{font-size:15px}
+.menu .tx small{white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.menu .sw{display:flex;gap:3px;justify-content:flex-end}.menu .sw i{width:8px;height:8px;display:block}
+.menu .ft{border-top:1px dashed var(--ink);margin-top:4px;padding:10px 10px 6px;font-size:13px;line-height:1.4;color:var(--ink-2)}
+.menu .ft a{font-weight:700;color:var(--ink);text-underline-offset:3px}
+@media (prefers-reduced-motion: reduce){.e,.e *,.menu{transition:none!important}}
+
+
+/* Rec light: slow breathe, like a recorder on standby */
+.rec-dot{display:inline-block;color:var(--s4);animation:rec-breathe 2.8s ease-in-out infinite}
+@keyframes rec-breathe{0%,100%{opacity:1;text-shadow:0 0 6px rgba(201,58,69,.75)}50%{opacity:.18;text-shadow:0 0 0 rgba(201,58,69,0)}}
+@media (prefers-reduced-motion: reduce){.rec-dot{animation:none}}
+
+
+/* Find your speed: full-screen takeover */
+.fys{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;justify-content:center;background:rgba(27,24,22,0);transition:background .3s ease}
+.fys[hidden]{display:none}
+.fys.in{background:rgba(27,24,22,.55)}
+.fys-panel{position:relative;display:flex;flex-direction:column;width:min(1120px,94vw);height:calc(100% - 4vh - env(safe-area-inset-top, 0px));background:var(--paper);border:2px solid var(--ink);border-bottom:0;border-radius:14px 14px 0 0;overflow:hidden;
+  box-shadow:0 -10px 40px rgba(27,24,22,.3);transform:translateY(105%);transition:transform .42s cubic-bezier(.2,.85,.25,1)}
+.fys.in .fys-panel{transform:none}
+.fys-bar{flex-shrink:0;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:0 10px 0 20px;height:52px;color:var(--paper);font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  background-color:var(--ink);background-image:repeating-linear-gradient(0deg,rgba(242,235,220,.07) 0 2px,transparent 2px 14px),repeating-linear-gradient(90deg,rgba(242,235,220,.07) 0 2px,transparent 2px 14px)}
+.fys-close{font:inherit;color:var(--paper);background:none;border:1.5px solid rgba(242,235,220,.45);border-radius:4px;padding:8px 12px;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase}
+.fys-close:hover{border-color:var(--paper);background:rgba(242,235,220,.08)}
+.fys-close:focus-visible{outline:3px solid var(--s3);outline-offset:2px}
+.fys iframe{flex:1;width:100%;border:0;background:var(--paper)}
+@media (max-width:720px){.fys-panel{width:100%;height:100%;border:0;border-radius:0}}
+@media (prefers-reduced-motion: reduce){.fys,.fys-panel{transition:none}}
+
 /* Tablet */
 @media (max-width:1100px){
   :root{--g:48px;--sec:88px}
   .nav{width:auto;padding-left:120px;gap:24px}
   .hero{flex-direction:column;gap:40px}
-  .deck{margin-top:0}
+  .jcard{margin-top:0}
   .grid3{grid-template-columns:1fr}
   .counters{grid-template-columns:repeat(2,minmax(0,1fr))}
   .counters div{padding-left:var(--g)!important;border-bottom:2px solid var(--ink)}
@@ -176,7 +236,9 @@ p{margin:0}
   .past-top .r{padding-top:0}
   .roster{grid-template-columns:repeat(4,minmax(0,1fr))}
   .portrait,.liner .copy{grid-column:1 / -1}
-  .portrait{max-width:480px}
+  .liner{display:flex;flex-direction:column;align-items:stretch}
+  .portrait{max-width:480px;width:calc(100% - 20px)}
+  .liner .copy{min-width:0}
   .liner{gap:56px}
   .contact-body{flex-direction:column;align-items:flex-start}
 }
@@ -184,11 +246,10 @@ p{margin:0}
 @media (max-width:720px){
   :root{--g:20px;--k:.62;--sec:72px}
   .nav{padding-left:48px;padding-right:var(--g);font-size:12px}
-  .nav a:not(.cta){display:none}
-  .nav a.cta{padding:8px 12px}
+  .nav > a{display:none}
   .hero{padding-top:48px}
   .hero h1{letter-spacing:-.04em}
-  .deck{width:100%}
+  .jcard{width:100%}
   .sec-head{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:36px}
   .speeds-sec .sec-head{padding-top:72px}
   .card h3{font-size:26px}
@@ -217,7 +278,7 @@ p{margin:0}
     <a href="#beliefs">Side A</a>
     <a href="#past-sessions">Side B</a>
     <a href="#liner-notes">Liner notes</a>
-    <a class="cta" href="#contact">● Start a session</a>
+    <div class="split"><span class="e sm"><a class="lbl" href="find-your-speed.html" data-fys>Start a session</a><button class="arr" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-nav" aria-label="Choose a session speed"><span>▶</span></button></span><div class="menu" id="speed-nav" role="menu"><div class="hd">Choose your speed</div><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20SP%20%28A%20focused%20sprint%29"><span class="sp">SP</span><span class="tx"><b>A focused sprint</b><small>Standard play · weeks</small></span><span class="sw" aria-hidden="true"><i style="background:#F3B63F"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20LP%20%28Fractional%20leadership%29"><span class="sp">LP</span><span class="tx"><b>Fractional leadership</b><small>Long play · months</small></span><span class="sw" aria-hidden="true"><i style="background:#EF8A32"></i><i style="background:#E4573A"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20EP%20%28A%20standing%20session%29"><span class="sp">EP</span><span class="tx"><b>A standing session</b><small>Extended play · ongoing</small></span><span class="sw" aria-hidden="true"><i style="background:#C93A45"></i><i style="background:#9C2C57"></i><i style="background:#5C2452"></i></span></a><div class="ft">Not sure yet? <a role="menuitem" href="find-your-speed.html" data-fys>Just press play</a> and find your speed.</div></div></div>
   </nav>
 </header>
 </div>
@@ -225,22 +286,27 @@ p{margin:0}
 <main>
 <section class="wrap hero" id="top">
   <div class="hero-copy">
-    <p class="eyebrow">A technology studio · Based in Oakland, CA</p>
+    <p class="eyebrow">A technology studio · Recorded in Oakland, CA</p>
     <h1>Hi-fi software engineering, remixed with AI.</h1>
     <p class="sub">We've built the iconic platforms fans live on. Now we help you build yours.</p>
     <div class="btns">
-      <a class="btn" href="#contact">● Start a session</a>
+      <div class="split"><span class="e"><a class="lbl" href="find-your-speed.html" data-fys>Start a session</a><button class="arr" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-hero" aria-label="Choose a session speed"><span>▶</span></button></span><div class="menu" id="speed-hero" role="menu"><div class="hd">Choose your speed</div><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20SP%20%28A%20focused%20sprint%29"><span class="sp">SP</span><span class="tx"><b>A focused sprint</b><small>Standard play · weeks</small></span><span class="sw" aria-hidden="true"><i style="background:#F3B63F"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20LP%20%28Fractional%20leadership%29"><span class="sp">LP</span><span class="tx"><b>Fractional leadership</b><small>Long play · months</small></span><span class="sw" aria-hidden="true"><i style="background:#EF8A32"></i><i style="background:#E4573A"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20EP%20%28A%20standing%20session%29"><span class="sp">EP</span><span class="tx"><b>A standing session</b><small>Extended play · ongoing</small></span><span class="sw" aria-hidden="true"><i style="background:#C93A45"></i><i style="background:#9C2C57"></i><i style="background:#5C2452"></i></span></a><div class="ft">Not sure yet? <a role="menuitem" href="find-your-speed.html" data-fys>Just press play</a> and find your speed.</div></div></div>
       <a class="link" href="#speeds">Choose your speed</a>
     </div>
   </div>
-  <div class="deck" aria-hidden="true">
+  <div class="jcard" aria-label="J-card">
     <div class="row" style="color:var(--muted)"><span>Kapwa · Side A</span><span>Hi-fi stereo</span></div>
     <div><div class="lbl">Session</div><div class="val">Your next release</div></div>
     <div><div class="lbl">Speed</div>
-      <div class="speeds"><span><i class="box on"></i>SP</span><span><i class="box"></i>LP</span><span><i class="box"></i>EP</span></div>
+      <div class="jc-speeds" id="jc-speeds">
+        <button type="button" class="jc-sp" data-speed="SP" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-jcard"><i class="box"></i>SP</button>
+        <button type="button" class="jc-sp" data-speed="LP" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-jcard"><i class="box"></i>LP</button>
+        <button type="button" class="jc-sp" data-speed="EP" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-jcard"><i class="box"></i>EP</button>
+        <div class="menu" id="speed-jcard" role="menu"><div class="hd">Choose your speed</div><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20SP%20%28A%20focused%20sprint%29"><span class="sp">SP</span><span class="tx"><b>A focused sprint</b><small>Standard play · weeks</small></span><span class="sw" aria-hidden="true"><i style="background:#F3B63F"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20LP%20%28Fractional%20leadership%29"><span class="sp">LP</span><span class="tx"><b>Fractional leadership</b><small>Long play · months</small></span><span class="sw" aria-hidden="true"><i style="background:#EF8A32"></i><i style="background:#E4573A"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20EP%20%28A%20standing%20session%29"><span class="sp">EP</span><span class="tx"><b>A standing session</b><small>Extended play · ongoing</small></span><span class="sw" aria-hidden="true"><i style="background:#C93A45"></i><i style="background:#9C2C57"></i><i style="background:#5C2452"></i></span></a><div class="ft">Not sure yet? <a role="menuitem" href="find-your-speed.html" data-fys>Just press play</a> and find your speed.</div></div>
+      </div>
     </div>
     <hr>
-    <div class="row"><span>Linear stereo</span><span style="color:var(--s4)">● Rec</span></div>
+    <div class="row"><span>Linear stereo</span><span style="color:var(--s4)"><span class="rec-dot" aria-hidden="true">●</span> Rec</span></div>
   </div>
 </section>
 
@@ -253,7 +319,7 @@ p{margin:0}
 
 <section class="wrap sec" id="beliefs">
   <div class="sec-head">
-    <div class="t"><p class="eyebrow">On repeat</p><h2 class="h2">We've seen the sock drawers.</h2></div>
+    <div class="t"><p class="eyebrow">Side A · On repeat</p><h2 class="h2">We've seen the sock drawers.</h2></div>
     <p class="lede">Everyone asks how the big platforms really do it. It's not magic. It's fundamentals, on repeat.</p>
   </div>
   <div class="grid3">
@@ -278,11 +344,11 @@ p{margin:0}
 <section class="wrap sec speeds-sec" id="speeds">
   <div class="sec-head">
     <div class="t"><p class="eyebrow">Side A · How sessions run</p><h2 class="h2">Choose your speed</h2></div>
-    <p class="lede">Every engagement is a session. Pick the run time that fits where you are.</p>
+    <p class="lede">Every engagement is a session. Pick the run time that fits where you are. Not sure? <a href="find-your-speed.html" data-fys style="font-weight:700;text-underline-offset:3px">Find your speed</a>.</p>
   </div>
   <div class="grid3">
     <article class="speed">
-      <div class="top"><span>Standard play · Weeks</span><em><i style="background:var(--s1)"></i><i style="background:var(--s2)"></i></em></div>
+      <div class="top"><span>Standard play · Weeks</span><em aria-hidden="true"><i style="background:var(--s1)"></i></em></div>
       <div class="body">
         <div class="big">SP</div>
         <h3>A focused sprint</h3>
@@ -291,7 +357,7 @@ p{margin:0}
       </div>
     </article>
     <article class="speed inv">
-      <div class="top"><span>Long play · Months</span><em><i style="background:var(--s3)"></i><i style="background:var(--s4)"></i></em></div>
+      <div class="top"><span>Long play · Months</span><em aria-hidden="true"><i style="background:var(--s2)"></i><i style="background:var(--s3)"></i></em></div>
       <div class="body">
         <div class="big">LP</div>
         <h3>Fractional and interim leadership</h3>
@@ -300,7 +366,7 @@ p{margin:0}
       </div>
     </article>
     <article class="speed">
-      <div class="top"><span>Extended play · Ongoing</span><em><i style="background:var(--s5)"></i><i style="background:var(--s6)"></i></em></div>
+      <div class="top"><span>Extended play · Ongoing</span><em aria-hidden="true"><i style="background:var(--s4)"></i><i style="background:var(--s5)"></i><i style="background:var(--s6)"></i></em></div>
       <div class="body">
         <div class="big">EP</div>
         <h3>A standing session</h3>
@@ -320,7 +386,6 @@ p{margin:0}
         <p>Through hyper-growth, acquisitions, and IPOs. Different rooms, same question: how do you build something people come back to?</p>
       </div>
     </div>
-    <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <ol class="roster">
       <li>01 Apple</li><li>02 Beats Music</li><li>03 Pandora</li><li>04 SoundCloud</li><li>05 UnitedMasters</li><li>06 Napster</li><li>07 Listen.com</li><li>08 MP3.com</li><li>09 GreatSchools</li><li>10 CNET</li><li>11 Dwell</li><li>12 GameSpot</li><li>13 Yahoo</li><li>14 TV.com</li><li>15 thisMoment</li><li class="you">16 Your session?</li>
     </ol>
@@ -329,7 +394,6 @@ p{margin:0}
 
 <section class="wrap sec liner" id="liner-notes">
   <div class="portrait">
-    <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <img src="/bobby-gaza.jpg" alt="Bobby Gaza, founder of Kapwa">
   </div>
   <div class="copy">
@@ -350,11 +414,11 @@ p{margin:0}
   <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="wrap contact-body">
     <div class="t">
-      <p class="eyebrow">● Rec · Ready when you are</p>
+      <p class="eyebrow"><span class="rec-dot" aria-hidden="true">●</span> Rec · Ready when you are</p>
       <h2>Tell us what you're making.</h2>
       <p>Every session starts with a conversation.</p>
     </div>
-    <a class="btn-y" href="mailto:info@kapwa.dev">● Start a session</a>
+    <div class="split"><span class="e"><a class="lbl" href="find-your-speed.html" data-fys>Start a session</a><button class="arr" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-contact" aria-label="Choose a session speed"><span>▶</span></button></span><div class="menu" id="speed-contact" role="menu"><div class="hd">Choose your speed</div><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20SP%20%28A%20focused%20sprint%29"><span class="sp">SP</span><span class="tx"><b>A focused sprint</b><small>Standard play · weeks</small></span><span class="sw" aria-hidden="true"><i style="background:#F3B63F"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20LP%20%28Fractional%20leadership%29"><span class="sp">LP</span><span class="tx"><b>Fractional leadership</b><small>Long play · months</small></span><span class="sw" aria-hidden="true"><i style="background:#EF8A32"></i><i style="background:#E4573A"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20EP%20%28A%20standing%20session%29"><span class="sp">EP</span><span class="tx"><b>A standing session</b><small>Extended play · ongoing</small></span><span class="sw" aria-hidden="true"><i style="background:#C93A45"></i><i style="background:#9C2C57"></i><i style="background:#5C2452"></i></span></a><div class="ft">Not sure yet? <a role="menuitem" href="find-your-speed.html" data-fys>Just press play</a> and find your speed.</div></div></div>
   </div>
   <div class="foot">
     <div class="wrap">
@@ -364,5 +428,110 @@ p{margin:0}
   </div>
 </footer>
 
+
+<script>
+(() => {
+  const splits = [...document.querySelectorAll('.split')];
+  const close = (sp, focus) => { sp.classList.remove('open'); const b = sp.querySelector('.arr'); b.setAttribute('aria-expanded', 'false'); if (focus) b.focus(); };
+  const closeAll = except => splits.forEach(sp => sp !== except && close(sp));
+  splits.forEach(sp => {
+    const btn = sp.querySelector('.arr'), items = [...sp.querySelectorAll('.menu a')];
+    btn.addEventListener('click', e => {
+      e.stopPropagation(); closeAll(sp);
+      const open = !sp.classList.contains('open');
+      if (open) { const r = sp.getBoundingClientRect(); sp.classList.toggle('up', innerHeight - r.bottom < 300 && r.top > 300); }
+      sp.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open));
+      if (open) items[0].focus();
+    });
+    sp.addEventListener('keydown', e => {
+      if (!sp.classList.contains('open')) return;
+      const i = items.indexOf(document.activeElement);
+      if (e.key === 'Escape') { e.preventDefault(); close(sp, true); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+    });
+    items.forEach(a => a.addEventListener('click', () => close(sp)));
+  });
+  document.addEventListener('click', () => closeAll());
+})();
+</script>
+
+<script>
+(() => {
+  const wrap = document.getElementById('jc-speeds'); if (!wrap) return;
+  const btns = [...wrap.querySelectorAll('.jc-sp')], menu = wrap.querySelector('.menu'), items = [...menu.querySelectorAll('a')];
+  const hoverable = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  let picked = null, t = 0;
+  const itemFor = sp => items.find(a => a.querySelector('.sp') && a.querySelector('.sp').textContent === sp);
+  function light(sp){ btns.forEach(b => b.classList.toggle('on', b.dataset.speed === sp)); }
+  function open(sp, focus){
+    clearTimeout(t); wrap.classList.add('open');
+    btns.forEach(b => b.setAttribute('aria-expanded', 'true'));
+    items.forEach(a => a.classList.toggle('hl', a === itemFor(sp)));
+    light(sp); if (focus) (itemFor(sp) || items[0]).focus();
+  }
+  function close(){
+    wrap.classList.remove('open'); btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    items.forEach(a => a.classList.remove('hl')); light(picked);
+  }
+  btns.forEach(b => {
+    b.addEventListener('click', e => { e.stopPropagation(); picked = b.dataset.speed; wrap.classList.add('picked'); open(picked, e.detail === 0); });
+    if (hoverable) b.addEventListener('mouseenter', () => open(b.dataset.speed, false));
+  });
+  if (hoverable) {
+    wrap.addEventListener('mouseleave', () => { t = setTimeout(close, 220); });
+    wrap.addEventListener('mouseenter', () => clearTimeout(t));
+  }
+  wrap.addEventListener('keydown', e => {
+    if (!wrap.classList.contains('open')) return;
+    const i = items.indexOf(document.activeElement);
+    if (e.key === 'Escape') { e.preventDefault(); close(); (btns.find(b => b.dataset.speed === picked) || btns[0]).focus(); }
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+  });
+  items.forEach(a => a.addEventListener('click', () => close()));
+  document.addEventListener('click', e => { if (!wrap.contains(e.target)) close(); });
+})();
+</script>
+
+<div class="fys" id="fys" hidden role="dialog" aria-modal="true" aria-labelledby="fys-title">
+  <div class="fys-panel">
+    <div class="fys-bar"><span id="fys-title"><span class="rec-dot" aria-hidden="true">●</span> Rec · Find your speed</span><button class="fys-close" id="fys-close" type="button">Close ✕</button></div>
+    <iframe id="fys-frame" title="Find your speed quiz"></iframe>
+  </div>
+</div>
+
+<script>
+(() => {
+  const box = document.getElementById('fys'), frame = document.getElementById('fys-frame'), closeBtn = document.getElementById('fys-close');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lastFocus = null, pushed = false, open = false;
+  function show(fromHistory){
+    if (open) return; open = true; lastFocus = document.activeElement;
+    frame.src = 'find-your-speed.html#embed';
+    box.hidden = false; document.documentElement.style.overflow = 'hidden';
+    requestAnimationFrame(() => requestAnimationFrame(() => box.classList.add('in')));
+    closeBtn.focus();
+    if (!fromHistory) { history.pushState({ fys: 1 }, '', '#find-your-speed'); pushed = true; }
+  }
+  function hide(fromHistory){
+    if (!open) return; open = false;
+    box.classList.remove('in'); document.documentElement.style.overflow = '';
+    setTimeout(() => { box.hidden = true; frame.src = 'about:blank'; }, reduce ? 0 : 420);
+    if (!fromHistory && pushed) { pushed = false; history.back(); }
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-fys]').forEach(a => a.addEventListener('click', e => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return;
+    e.preventDefault(); const sp = a.closest('.split'); if (sp) sp.classList.remove('open'); show(false);
+  }));
+  closeBtn.addEventListener('click', () => hide(false));
+  box.addEventListener('click', e => { if (e.target === box) hide(false); });
+  document.addEventListener('keydown', e => { if (open && e.key === 'Escape') hide(false); });
+  addEventListener('message', e => { if (e.data === 'fys-close' && (e.origin === location.origin || e.origin === 'null')) hide(false); });
+  addEventListener('popstate', () => { if (location.hash === '#find-your-speed') show(true); else { pushed = false; hide(true); } });
+  if (location.hash === '#find-your-speed') show(true);
+})();
+</script>
 </body>
 </html>
