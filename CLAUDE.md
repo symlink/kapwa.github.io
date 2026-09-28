@@ -54,7 +54,7 @@ Don't use: Format, Sessions as a section label, Side A / Side B, front cover, sp
   - Tape and audio language is the voice: sessions, sides, tracks, liner notes, speeds, rec.
   - "We" is fine. It's a studio.
 - Locked hero:
-  - Eyebrow: A technology studio · Recorded in Oakland, CA
+  - Eyebrow: A technology studio · Rooted in Oakland, CA
   - Headline: Hi-fi engineering and leadership.
   - Subhead: We've built the iconic platforms fans live on. Now we help you build yours.
 - If the headline changes, update `<title>`, the meta description, the og/twitter tags and `og-image.png` in the same commit.
@@ -90,6 +90,10 @@ Type:
 - **Rec dot** breathes slowly (2.8s). Keep motion subtle.
 - Every animation must respect `prefers-reduced-motion`.
 - **Only one dark full-width block:** the footer. Past sessions is an inset card on purpose.
+
+- **Section title colors** walk the sunset back toward warm as you scroll: Fidelity title plum (s6), Liner notes title magenta (s5), Playback title red (s4). Hero and dark-card titles stay ink/paper.
+- **Performance row** (stats) uses warm dark gray `#4A423C` for numbers, labels and rules, so it doesn't compete with the Discography card above it.
+- **Fidelity head** is stacked: one-line headline on desktop, lede underneath.
 
 ## Checks before every commit
 
