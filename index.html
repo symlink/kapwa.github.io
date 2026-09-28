@@ -1,9 +1,30 @@
-<!doctype html><html><head><meta charset=utf8><title>kapwa · Hi-fi engineering and leadership</title><meta name="description" content="A technology studio, recorded in Oakland, CA. Hi-fi engineering and leadership."><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kapwa | Hi-fi engineering and leadership</title>
+<meta name="description" content="Kapwa is a technology studio in Oakland. Hi-fi engineering and leadership. We've built the iconic platforms fans live on. Now we help you build yours.">
+<meta property="og:title" content="kapwa | Hi-fi engineering and leadership">
+<meta property="og:description" content="We've built the iconic platforms fans live on. Now we help you build yours.">
+<meta property="og:url" content="https://kapwa.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kapwa">
+<meta property="og:image" content="https://kapwa.dev/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="kapwa: Hi-fi engineering and leadership.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="kapwa | Hi-fi engineering and leadership">
+<meta name="twitter:image" content="https://kapwa.dev/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F2EBDC">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-
 :root{
   --paper:#F2EBDC; --card:#F8F4EA; --ink:#1B1816; --ink-2:#3A342F; --muted:#5A524A;
   --line-dk:#4A423C; --on-dk:#D9D0BF; --on-dk-2:#BFB5A3; --photo:#E3D9C4;
@@ -65,13 +86,17 @@ p{margin:0}
 .menu > a.hl{background:#EFE6D2}
 .jcard hr{border:0;height:1px;background:var(--ink);margin:0}
 
-/* Counters */
-.counters{max-width:1440px;margin:56px auto 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
-.counters div{padding:36px 48px;border-right:2px solid var(--ink);display:flex;flex-direction:column;gap:8px}
-.counters div:first-child{padding-left:var(--g)}
-.counters div:last-child{border-right:0}
-.counters b{font-family:var(--mono);font-weight:600;font-size:clamp(40px,4vw,56px);letter-spacing:-1px}
-.counters span{font-size:16px;color:var(--muted)}
+/* Counters: position label */
+.counters{margin:56px 0 0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.counters .row{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.counters .row > div{display:flex;align-items:center;gap:14px;padding:30px 20px;min-width:0;border-right:2px solid var(--ink)}
+.counters .row > div:first-child{padding-left:var(--g)}
+.counters .row > div:last-child{border-right:0}
+.counters b{order:2;font-size:clamp(44px,4.2vw,64px);font-weight:700;letter-spacing:-2.5px;line-height:.9}
+.counters span{order:1;border-left:2px solid var(--ink);padding-left:10px;font:700 13px/1.15 var(--sans);letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.counters .fine{background:#FFFFFF;border-top:2px solid var(--ink)}
+.counters .fine > div{max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 28px;padding:6px var(--g);font:500 11px/1.4 var(--mono);letter-spacing:2px;text-transform:uppercase;color:rgba(27,24,22,.45)}
+.counters .fine i{font-style:normal}
 
 /* Sections */
 .sec{padding-top:var(--sec);padding-bottom:var(--sec)}
@@ -100,6 +125,7 @@ p{margin:0}
 .speed.inv .tags{color:var(--on-dk-2);border-top-color:var(--line-dk)}
 
 /* Past sessions */
+
 .dark{background:var(--ink);color:var(--paper)}
 .past-top{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start;margin-bottom:56px}
 .past-top .l{grid-column:span 7;display:flex;flex-direction:column;gap:20px}
@@ -110,18 +136,60 @@ p{margin:0}
 .roster li{padding:22px 0;border-bottom:1px solid var(--line-dk)}
 .roster li.you{color:var(--s1)}
 
+/* Past sessions: cassette shell */
+.chev{--h:36px;position:relative;isolation:isolate;display:inline-flex;align-items:center;height:var(--h);padding:0 calc(var(--h)/2 + 12px) 0 14px;font:600 12px/1 var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--ink);white-space:nowrap;text-decoration:none}
+.chev::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--ink);clip-path:polygon(0 0,calc(100% - var(--h)/2) 0,100% 50%,calc(100% - var(--h)/2) 100%,0 100%)}
+.chev::after{content:"";position:absolute;inset:2px 3px 2px 2px;z-index:-1;background:var(--paper);clip-path:polygon(0 0,calc(100% - (var(--h) - 4px)/2) 0,100% 50%,calc(100% - (var(--h) - 4px)/2) 100%,0 100%)}
+.dark .chev.on{color:var(--ink)}
+.dark .chev.on::before{background:var(--s1);transition:filter .15s}
+.dark .chev.on::after{display:none}
+.dark .chev.on:hover{color:var(--ink)}.dark .chev.on:hover::before{filter:brightness(1.08)}
+/* shell */
+.shell{position:relative;border-radius:16px;overflow:hidden}
+.shell .in{padding:72px 64px 0}
+.shell .screw{position:absolute;width:12px;height:12px;border-radius:50%;background:#2E2825;box-shadow:inset 0 0 0 2px #3A342F}
+.shell .screw::after{content:"";position:absolute;left:2px;right:2px;top:5px;height:2px;background:#1B1816;transform:rotate(35deg)}
+.shell .s1{left:18px;top:18px}.shell .s2{right:18px;top:18px}.shell .s3{left:18px;bottom:18px}.shell .s4{right:18px;bottom:18px}
+.cue{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:40px;padding:22px 0 30px;border-top:1px solid var(--line-dk);font:500 12px var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--on-dk-2)}
+.shell .roster li:nth-last-child(-n+4){border-bottom:0}
+/* strip */
+.strip{overflow:hidden;border-top:1px solid var(--line-dk);border-bottom:1px solid var(--line-dk);padding:22px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.strip .track{display:flex;align-items:center;gap:28px;width:max-content;animation:tape 60s linear infinite;font:500 20px var(--mono);letter-spacing:1px;text-transform:uppercase}
+.strip .track i{font-style:normal;font-size:10px}
+.strip .track span{color:var(--paper)}
+.strip .track span.you{color:var(--s1)}
+.strip:hover .track{animation-play-state:paused}
+@keyframes tape{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.strip .track{animation:none;flex-wrap:wrap;width:auto}}
+.compact .past-top{margin-bottom:40px}
+.compact .sec{padding-top:88px;padding-bottom:0}
+.compact .cue{margin-top:0;border-top:0}
+@media (max-width:720px){.shell .in{padding:48px 22px 0}.shell{border-radius:12px}.strip .track{font-size:16px}}
+@media (max-width:720px){.padx{padding:0 22px!important}}
+
+/* Beliefs: tracklist */
+#beliefs{padding-bottom:calc(var(--sec) * .55)}
+#liner-notes{padding-top:calc(var(--sec) * .55)}
+.tl{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.tl li{display:grid;grid-template-columns:150px minmax(0,5fr) minmax(0,6fr);gap:40px;padding:36px 0;align-items:baseline}
+.tl li + li{border-top:1px solid rgba(27,24,22,.22)}
+.tl .no{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.tl .no i{width:10px;height:10px;display:block;flex:none}
+.tl h3{font-size:clamp(26px,2.8vw,38px);line-height:1.08;letter-spacing:-.8px}
+.tl p{font-size:18px;line-height:1.6;color:var(--ink-2);max-width:580px}
+@media (max-width:900px){.tl li{grid-template-columns:1fr;gap:12px;padding:28px 0}}
+
 /* Liner notes */
-.liner{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:center}
-.portrait{grid-column:span 5;position:relative;margin-right:20px;margin-bottom:20px}
-.portrait .stripes{position:absolute;left:20px;top:20px;right:-20px;bottom:-20px;border-radius:6px;overflow:hidden}
-.portrait .stripes i{flex-grow:1;height:auto}
-.portrait img{position:relative;width:100%;height:520px;object-fit:cover;border:2px solid var(--ink);border-radius:6px;background:var(--photo)}
-.liner .copy{grid-column:7 / span 6;display:flex;flex-direction:column;gap:24px}
+.liner{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start}
+.portrait{margin:0;grid-column:2 / span 2;justify-self:end;width:176px}
+.portrait img{display:block;width:176px;height:176px;object-fit:cover;border:2px solid var(--ink);border-radius:6px;background:var(--photo)}
+.portrait figcaption{margin-top:10px;white-space:nowrap;font-family:var(--mono);font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.liner .copy{grid-column:5 / span 7;display:flex;flex-direction:column;gap:24px}
 .liner .copy p{font-size:20px;line-height:1.6;color:var(--ink-2)}
 .liner strong{color:var(--ink)}
-.channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:2px solid var(--ink);border-radius:6px;background:var(--card)}
-.channels div{padding:20px 22px;display:flex;flex-direction:column;gap:6px}
-.channels div:first-child{border-right:2px solid var(--ink)}
+.channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:18px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.channels div{display:flex;flex-direction:column;gap:6px;padding:2px 24px}
+.channels div:first-child{padding-left:0;border-right:1px solid var(--ink)}
 .channels small{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
 .channels small a{color:var(--muted)}
 .channels span{font-size:18px;font-weight:600}
@@ -207,18 +275,18 @@ p{margin:0}
   .hero{flex-direction:column;gap:40px}
   .jcard{margin-top:0}
   .grid3{grid-template-columns:1fr}
-  .counters{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .counters div{padding-left:var(--g)!important;border-bottom:2px solid var(--ink)}
-  .counters div:nth-child(2n){border-right:0}
-  .counters div:nth-child(n+3){border-bottom:0}
   .past-top .l,.past-top .r{grid-column:1 / -1}
   .past-top .r{padding-top:0}
+  .counters .row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .counters .row > div{padding-left:var(--g)!important}
+  .counters .row > div:nth-child(2n){border-right:0}
+  .counters .row > div:nth-child(-n+2){border-bottom:2px solid var(--ink)}
   .roster{grid-template-columns:repeat(4,minmax(0,1fr))}
   .portrait,.liner .copy{grid-column:1 / -1}
   .liner{display:flex;flex-direction:column;align-items:stretch}
-  .portrait{max-width:480px;width:calc(100% - 20px)}
+  .portrait{justify-self:start}
   .liner .copy{min-width:0}
-  .liner{gap:56px}
+  .liner{gap:32px}
   .contact-body{flex-direction:column;align-items:flex-start}
 }
 /* Phone */
@@ -232,23 +300,23 @@ p{margin:0}
   .sec-head{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:36px}
   .speeds-sec .sec-head{padding-top:72px}
   .card h3{font-size:26px}
-  .counters div{padding:24px var(--g)}
   .roster{grid-template-columns:repeat(2,minmax(0,1fr));font-size:14px}
-  .portrait img{height:420px}
+  .counters .row > div{flex-direction:column;align-items:flex-start;gap:12px;padding:22px 12px 24px}
+  .counters b{font-size:40px;letter-spacing:-1.5px}
+  .counters span{font-size:11px;padding-left:8px}
+  .counters .fine > div{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;padding-top:7px;padding-bottom:7px;font-size:10px;letter-spacing:1.2px}
   .channels{grid-template-columns:1fr}
-  .channels div:first-child{border-right:0;border-bottom:2px solid var(--ink)}
+  .channels div{padding:10px 0}
+  .channels div:first-child{border-right:0;border-bottom:1px solid var(--ink)}
   .liner .copy p{font-size:18px}
   .contact h2{letter-spacing:-2px}
   .contact .stripes i{--h:14px}
   .contact-body{padding-top:64px;padding-bottom:64px}
   .foot .wrap{flex-direction:column;align-items:flex-start;gap:8px}
 }
-
-.sunframe{position:relative;height:520px;border:2px solid var(--ink);border-radius:6px;background:var(--paper);display:flex;align-items:center;justify-content:center}
-@media (max-width:720px){.sunframe{height:400px}}
-
 </style>
-
+</head>
+<body>
 
 <div style="position:relative">
 <div class="bandfull stripes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -257,8 +325,8 @@ p{margin:0}
     <svg viewBox="80 30 290 150" role="img" aria-label="kapwa" preserveAspectRatio="xMinYMin meet"><path fill="#1B1816" d="M85.4 114.0H98.7V88.1L117.6 114.0H135.5L112.5 85.7L132.3 58.599999999999994H116.4L98.7 84.7V40.099999999999994H85.4Z M186.1 58.599999999999994H173.9V66.0C169.3 59.9 163.8 57.3 155.8 57.3C139.4 57.3 127.6 69.6 127.6 86.5C127.6 103.2 139.29999999999998 115.3 155.5 115.3C163.3 115.3 168.6 112.9 173.9 106.8V114.0H186.1ZM157.2 69.5C166.7 69.5 173.5 76.6 173.5 86.7C173.5 90.7 171.9 95.3 169.5 98.1C166.8 101.4 162.5 103.1 157.4 103.1C147.7 103.1 141.0 96.5 141.0 86.8C141.0 76.69999999999999 147.7 69.5 157.2 69.5Z M187.0 132.5H200.29999999999998V108.8C205.4 113.3 210.5 115.3 217.3 115.3C233.3 115.3 245.0 102.9 245.0 86.1C245.0 69.4 233.4 57.3 217.5 57.3C209.9 57.3 203.5 60.0 199.2 65.1V58.599999999999994H187.0ZM215.7 69.5C224.7 69.5 231.6 76.8 231.6 86.4C231.6 95.8 224.7 103.1 215.9 103.1C206.5 103.1 199.5 95.9 199.5 86.2C199.5 76.69999999999999 206.5 69.5 215.7 69.5Z M257.3 114.0H265.5L276.2 78.1L286.7 114.0H295.0L315.0 58.599999999999994H300.8L290.7 92.4L281.6 58.599999999999994H271.0L261.7 92.4L251.8 58.599999999999994H237.5Z M366.4 58.599999999999994H354.2V66.0C349.59999999999997 59.9 344.09999999999997 57.3 336.09999999999997 57.3C319.7 57.3 307.9 69.6 307.9 86.5C307.9 103.2 319.59999999999997 115.3 335.79999999999995 115.3C343.59999999999997 115.3 348.9 112.9 354.2 106.8V114.0H366.4ZM337.5 69.5C347.0 69.5 353.79999999999995 76.6 353.79999999999995 86.7C353.79999999999995 90.7 352.2 95.3 349.79999999999995 98.1C347.09999999999997 101.4 342.79999999999995 103.1 337.7 103.1C328.0 103.1 321.29999999999995 96.5 321.29999999999995 86.8C321.29999999999995 76.69999999999999 328.0 69.5 337.5 69.5Z"/><rect x="186.6" y="114" width="14" height="66" fill="#F2EBDC"/></svg>
   </a>
   <nav class="nav" aria-label="Main">
-    <a href="#beliefs">Side A</a>
-    <a href="#past-sessions">Side B</a>
+    <a href="#past-sessions">Side A</a>
+    <a href="#beliefs">Side B</a>
     <a href="#liner-notes">Liner notes</a>
     <div class="split"><span class="e sm"><a class="lbl" href="find-your-speed.html" data-fys>Start a session</a><button class="arr" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-nav" aria-label="Choose a session speed"><span>▶</span></button></span><div class="menu" id="speed-nav" role="menu"><div class="hd">Choose your speed</div><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20SP%20%28A%20focused%20sprint%29"><span class="sp">SP</span><span class="tx"><b>A focused sprint</b><small>Standard play · weeks</small></span><span class="sw" aria-hidden="true"><i style="background:#F3B63F"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20LP%20%28Fractional%20leadership%29"><span class="sp">LP</span><span class="tx"><b>Fractional leadership</b><small>Long play · months</small></span><span class="sw" aria-hidden="true"><i style="background:#EF8A32"></i><i style="background:#E4573A"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20EP%20%28A%20standing%20session%29"><span class="sp">EP</span><span class="tx"><b>A standing session</b><small>Extended play · ongoing</small></span><span class="sw" aria-hidden="true"><i style="background:#C93A45"></i><i style="background:#9C2C57"></i><i style="background:#5C2452"></i></span></a><div class="ft">Not sure yet? <a role="menuitem" href="find-your-speed.html" data-fys>Just press play</a> and find your speed.</div></div></div>
   </nav>
@@ -292,40 +360,56 @@ p{margin:0}
   </div>
 </section>
 
-<div class="counters">
-  <div><b>20+</b><span>Years in tech</span></div>
-  <div><b>100M+</b><span>Users</span></div>
-  <div><b>15+</b><span>Seed to IPO companies (and counting)</span></div>
-  <div><b>8+</b><span>Iconic music platforms (and counting)</span></div>
-</div>
+<section class="counters" aria-label="By the numbers">
+  <div class="row">
+    <div><b>20+</b><span>Years<br>in tech<br>Type I</span></div>
+    <div><b>100M+</b><span>Users<br>on the<br>platforms</span></div>
+    <div><b>15+</b><span>Seed<br>to IPO<br>and counting</span></div>
+    <div><b>8+</b><span>Iconic<br>music<br>platforms</span></div>
+  </div>
+  <div class="fine" aria-hidden="true"><div><i>Extended high end</i><i>Low noise</i><i>High output</i><i>Super precision studio mechanism</i></div></div>
+</section>
+
+<div class="wrap" style="margin-top:56px"><section class="shell dark compact" id="past-sessions"><i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i><div class="in" style="padding-left:0;padding-right:0">
+<div style="padding:0 64px" class="padx"><div class="past-top">
+      <div class="l"><p class="eyebrow">Side A · Past sessions</p><h2>Two decades building platforms for creators and the people who love them.</h2></div>
+      <div class="r">
+        <p>Music, from Napster and Listen.com to Beats, Apple Music, Pandora, SoundCloud, and UnitedMasters. Media, from CNET and GameSpot to Yahoo and Dwell. Education, at GreatSchools.</p>
+      </div>
+    </div>
+</div><div class="strip" aria-label="Past sessions"><div class="track"><span>Apple</span><i style="color:#F3B63F">●</i><span>Beats Music</span><i style="color:#EF8A32">●</i><span>Pandora</span><i style="color:#E4573A">●</i><span>SoundCloud</span><i style="color:#C93A45">●</i><span>UnitedMasters</span><i style="color:#9C2C57">●</i><span>Napster</span><i style="color:#5C2452">●</i><span>Listen.com</span><i style="color:#F3B63F">●</i><span>MP3.com</span><i style="color:#EF8A32">●</i><span>GreatSchools</span><i style="color:#E4573A">●</i><span>CNET</span><i style="color:#C93A45">●</i><span>Dwell</span><i style="color:#9C2C57">●</i><span>GameSpot</span><i style="color:#5C2452">●</i><span>Yahoo</span><i style="color:#F3B63F">●</i><span>TV.com</span><i style="color:#EF8A32">●</i><span>thisMoment</span><i style="color:#E4573A">●</i><span class="you">Your session?</span><i style="color:#F3B63F">●</i><span>Apple</span><i style="color:#F3B63F">●</i><span>Beats Music</span><i style="color:#EF8A32">●</i><span>Pandora</span><i style="color:#E4573A">●</i><span>SoundCloud</span><i style="color:#C93A45">●</i><span>UnitedMasters</span><i style="color:#9C2C57">●</i><span>Napster</span><i style="color:#5C2452">●</i><span>Listen.com</span><i style="color:#F3B63F">●</i><span>MP3.com</span><i style="color:#EF8A32">●</i><span>GreatSchools</span><i style="color:#E4573A">●</i><span>CNET</span><i style="color:#C93A45">●</i><span>Dwell</span><i style="color:#9C2C57">●</i><span>GameSpot</span><i style="color:#5C2452">●</i><span>Yahoo</span><i style="color:#F3B63F">●</i><span>TV.com</span><i style="color:#EF8A32">●</i><span>thisMoment</span><i style="color:#E4573A">●</i><span class="you">Your session?</span><i style="color:#F3B63F">●</i></div></div><div style="padding:0 64px" class="padx"><div class="cue"><span>Side A · 16 tracks · 20+ years</span><a class="chev on" href="#beliefs">▶▶&nbsp; Flip to Side B</a></div></div>
+</div></section></div>
+
 
 <section class="wrap sec" id="beliefs">
   <div class="sec-head">
-    <div class="t"><p class="eyebrow">Side A · On repeat</p><h2 class="h2">We've seen the sock drawers.</h2></div>
+    <div class="t"><p class="eyebrow">Side B · On repeat</p><h2 class="h2">We've seen the sock drawers.</h2></div>
     <p class="lede">Everyone asks how the big platforms really do it. It's not magic. It's fundamentals, on repeat.</p>
   </div>
-  <div class="grid3">
-    <article class="card"><div class="cap" style="background:var(--s1)"></div><div class="body">
-      <div class="track">Track 01</div>
-      <h3>Your software sounds like your team.</h3>
-      <p>Melvin Conway called it: systems mirror how the people building them communicate. The best platforms close the communication gaps first, and the architecture follows.</p>
-    </div></article>
-    <article class="card"><div class="cap" style="background:var(--s3)"></div><div class="body">
-      <div class="track">Track 02</div>
-      <h3>Whoever owns the fan owns what comes next.</h3>
-      <p>Platforms, labels, and creators are all reaching for the same relationship. The winners decide which side of it they're on, then build like they mean it.</p>
-    </div></article>
-    <article class="card"><div class="cap" style="background:var(--s5)"></div><div class="body">
-      <div class="track">Track 03</div>
-      <h3>Fast. Not frantic.</h3>
-      <p>AI makes teams fast. Taste and judgment keep them from getting frantic. John Wooden said it first: be quick, but don't hurry.</p>
-    </div></article>
+  <ol class="tl"><li><span class="no"><i style="background:var(--s1)"></i>Track 01</span><h3>Your software sounds like your team.</h3><p>Melvin Conway called it: systems mirror how the people building them communicate. The best platforms close the communication gaps first, and the architecture follows.</p></li><li><span class="no"><i style="background:var(--s3)"></i>Track 02</span><h3>Whoever owns the fan owns what comes next.</h3><p>Platforms, labels, and creators are all reaching for the same relationship. The winners decide which side of it they're on, then build like they mean it.</p></li><li><span class="no"><i style="background:var(--s5)"></i>Track 03</span><h3>Fast. Not frantic.</h3><p>AI makes teams fast. Taste and judgment keep them from getting frantic. John Wooden said it first: be quick, but don't hurry.</p></li></ol>
+</section>
+
+<section class="wrap sec liner" id="liner-notes">
+  <figure class="portrait">
+    <img src="/bobby-gaza.jpg" alt="Bobby Gaza, founder of Kapwa">
+    <figcaption>Bobby Gaza · Producer</figcaption>
+  </figure>
+  <div class="copy">
+    <p class="eyebrow">Liner notes</p>
+    <h2 class="h2">We rise together.</h2>
+    <p><strong>Kapwa</strong> is a Filipino word for shared identity: I am because you are. It's why this is a studio and not a solo act.</p>
+    <p>Kapwa was started by Bobby Gaza, who has spent his career where technology meets culture, building platforms that connect creators to the people who need to hear them.</p>
+    <div class="channels">
+      <div><small>L channel · Kapwa</small><span>Strategy and leadership</span></div>
+      <div><small>R channel · <a href="https://www.spandigital.com">SPAN Digital</a></small><span>Engineering execution at scale</span></div>
+    </div>
+    <p>Off the clock: family in Oakland, and <a href="https://www.strava.com/athletes/24640803" style="font-weight:600">cycling</a> the Bay Area hills.</p>
   </div>
 </section>
 
 <section class="wrap sec speeds-sec" id="speeds">
   <div class="sec-head">
-    <div class="t"><p class="eyebrow">Side A · How sessions run</p><h2 class="h2">Choose your speed</h2></div>
+    <div class="t"><p class="eyebrow">Side B · How sessions run</p><h2 class="h2">Choose your speed</h2></div>
     <p class="lede">Every engagement is a session. Pick the run time that fits where you are. Not sure? <a href="find-your-speed.html" data-fys style="font-weight:700;text-underline-offset:3px">Find your speed</a>.</p>
   </div>
   <div class="grid3">
@@ -359,37 +443,7 @@ p{margin:0}
   </div>
 </section>
 
-<section class="dark" id="past-sessions">
-  <div class="wrap sec">
-    <div class="past-top">
-      <div class="l"><p class="eyebrow">Side B · Past sessions</p><h2>Two decades building platforms for creators and the people who love them.</h2></div>
-      <div class="r">
-        <p>Music, from Napster and Listen.com to Beats, Apple Music, Pandora, SoundCloud, and UnitedMasters. Media, from CNET and GameSpot to Yahoo and Dwell. Education, at GreatSchools.</p>
-        <p>Through hyper-growth, acquisitions, and IPOs. Different rooms, same question: how do you build something people come back to?</p>
-      </div>
-    </div>
-    <ol class="roster">
-      <li>01 Apple</li><li>02 Beats Music</li><li>03 Pandora</li><li>04 SoundCloud</li><li>05 UnitedMasters</li><li>06 Napster</li><li>07 Listen.com</li><li>08 MP3.com</li><li>09 GreatSchools</li><li>10 CNET</li><li>11 Dwell</li><li>12 GameSpot</li><li>13 Yahoo</li><li>14 TV.com</li><li>15 thisMoment</li><li class="you">16 Your session?</li>
-    </ol>
-  </div>
-</section>
 
-<section class="wrap sec liner" id="liner-notes">
-  <div class="portrait">
-    <div class="sunframe"><svg width="340" height="340" viewBox="0 0 340 340" role="img" aria-label="kapwa sun mark" style="max-width:80%;height:auto"><defs><clipPath id="clin"><circle cx="170.0" cy="170.0" r="170.0"/></clipPath><linearGradient id="glin" x1="0" y1="0" x2="0" y2="340" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E99A6F" stop-opacity="0"/><stop offset="0.190" stop-color="#E99A6F" stop-opacity="0"/><stop offset="0.619" stop-color="#E99A6F"/><stop offset="1" stop-color="#E99A6F"/></linearGradient></defs><g clip-path="url(#clin)"><rect width="340" height="340" fill="url(#glin)"/><rect x="0" y="210.6" width="340" height="22.2" fill="#F3B63F"/><rect x="0" y="232.1" width="340" height="22.2" fill="#EF8A32"/><rect x="0" y="253.7" width="340" height="22.2" fill="#E4573A"/><rect x="0" y="275.3" width="340" height="22.2" fill="#C93A45"/><rect x="0" y="296.9" width="340" height="22.2" fill="#9C2C57"/><rect x="0" y="318.4" width="340" height="22.2" fill="#5C2452"/><g transform="translate(15.5,129.4) scale(1.0961) translate(-85,-40)"><path d="M85.4 114.0H98.7V88.1L117.6 114.0H135.5L112.5 85.7L132.3 58.5H116.4L98.7 84.7V40.0H85.4Z M186.1 58.5H173.9V66.0C169.3 59.9 163.8 57.3 155.8 57.3C139.4 57.3 127.6 69.6 127.6 86.5C127.6 103.2 139.2 115.3 155.5 115.3C163.3 115.3 168.6 112.9 173.9 106.8V114.0H186.1ZM157.2 69.5C166.7 69.5 173.5 76.6 173.5 86.7C173.5 90.7 171.9 95.3 169.5 98.1C166.8 101.4 162.5 103.1 157.4 103.1C147.7 103.1 141.0 96.5 141.0 86.8C141.0 76.6 147.7 69.5 157.2 69.5Z M187.0 132.5H200.2V108.8C205.4 113.3 210.5 115.3 217.3 115.3C233.3 115.3 245.0 102.9 245.0 86.1C245.0 69.4 233.4 57.3 217.5 57.3C209.9 57.3 203.5 60.0 199.2 65.1V58.5H187.0ZM215.7 69.5C224.7 69.5 231.6 76.8 231.6 86.4C231.6 95.8 224.7 103.1 215.9 103.1C206.5 103.1 199.5 95.9 199.5 86.2C199.5 76.6 206.5 69.5 215.7 69.5Z M257.3 114.0H265.5L276.2 78.1L286.7 114.0H295.0L315.0 58.5H300.8L290.7 92.4L281.6 58.5H271.0L261.7 92.4L251.8 58.5H237.5Z M366.4 58.5H354.2V66.0C349.5 59.9 344.0 57.3 336.0 57.3C319.7 57.3 307.9 69.6 307.9 86.5C307.9 103.2 319.5 115.3 335.7 115.3C343.5 115.3 348.9 112.9 354.2 106.8V114.0H366.4ZM337.5 69.5C347.0 69.5 353.7 76.6 353.7 86.7C353.7 90.7 352.2 95.3 349.7 98.1C347.0 101.4 342.7 103.1 337.7 103.1C328.0 103.1 321.2 96.5 321.2 86.8C321.2 76.6 328.0 69.5 337.5 69.5Z" fill="#FFFFFF"/></g><rect x="126.8" y="208.6" width="15.3" height="131.4" fill="#FFFFFF"/></g></svg></div>
-  </div>
-  <div class="copy">
-    <p class="eyebrow">Liner notes</p>
-    <h2 class="h2">We rise together.</h2>
-    <p><strong>Kapwa</strong> is a Filipino word for shared identity: I am because you are. It's why this is a studio and not a solo act.</p>
-    <p>Kapwa was started by Bobby Gaza, who has spent his career where technology meets culture, building platforms that connect creators to the people who need to hear them.</p>
-    <div class="channels">
-      <div><small>L channel · Kapwa</small><span>Strategy and leadership</span></div>
-      <div><small>R channel · <a href="https://www.spandigital.com">SPAN Digital</a></small><span>Engineering execution at scale</span></div>
-    </div>
-    <p>Off the clock: family in Oakland, and <a href="https://www.strava.com/athletes/24640803" style="font-weight:600">cycling</a> the Bay Area hills.</p>
-  </div>
-</section>
 </main>
 
 <footer class="dark contact" id="contact">
@@ -515,6 +569,5 @@ p{margin:0}
   if (location.hash === '#find-your-speed') show(true);
 })();
 </script>
-
-
-</body></html>
+</body>
+</html>
