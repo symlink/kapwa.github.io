@@ -10,17 +10,36 @@ Marketing site for Kapwa, a technology studio run by Bobby Gaza. It's a static s
 
 ## Page order
 
-| # | Section | Anchor | Label |
-|---|---------|--------|-------|
+| # | Section | Anchor | Group (eyebrow prefix) |
+|---|---------|--------|------------------------|
 | 1 | Header, nav, hero, J-card | `#top` | |
-| 2 | Stats | | |
-| 3 | Past sessions (cassette shell, tape strip) | `#past-sessions` | Side A |
-| 4 | On repeat (tracklist) | `#beliefs` | Side B |
+| 2 | Stats | | Discography |
+| 3 | Past sessions (cassette shell, tape strip) | `#past-sessions` | Discography |
+| 4 | On repeat (tracklist) | `#beliefs` | Performance |
 | 5 | Liner notes | `#liner-notes` | Liner notes |
-| 6 | Choose your speed | `#speeds` | Side B |
+| 6 | Choose your speed | `#speeds` | Performance · Sessions |
 | 7 | Contact and footer | `#contact` | |
 
-The nav reads Side A → `#past-sessions`, Side B → `#beliefs`, Liner notes → `#liner-notes`. If sections move, keep the Side labels and the nav in page order.
+- Nav: On repeat → `#beliefs`, Sessions → `#speeds`, Liner notes → `#liner-notes`.
+- The stats fine print bar links each spec to its track (`#t-low-noise`, `#t-extended-high-end`, `#t-high-output`). "Super precision studio mechanism" lives only on Sessions, not in the bar.
+
+## Glossary
+
+Use these terms consistently, in copy and in code comments.
+
+| Term | Means |
+|------|-------|
+| Session | An engagement. "Start a session" = get in touch. |
+| Format / speed | Engagement length, as **tape speeds**: SP standard play (weeks), LP long play (months), EP extended play (ongoing). EP is the longest. Never use the vinyl meanings (single, EP as a short record). |
+| Discography | The track record: stats and past sessions. |
+| Performance | How we work: On repeat and Sessions. |
+| Tracks | The principles in On repeat, each labeled with a spec. |
+| Specs | Low noise (Conway, communication), Extended high end (owning the fan), High output (fast, not frantic). |
+| Super precision studio mechanism | The process behind every session. Lives on Sessions. |
+| Liner notes | The people. Not "back cover". |
+| Rec | Available now. |
+
+Don't use: front cover, spine, back cover, or Side A / Side B anywhere (the J-card top row is just "Kapwa / Hi-fi stereo").
 
 ## Copy
 

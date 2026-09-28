@@ -96,7 +96,8 @@ p{margin:0}
 .counters span{order:1;border-left:2px solid var(--ink);padding-left:10px;font:700 13px/1.15 var(--sans);letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
 .counters .fine{background:#FFFFFF;border-top:2px solid var(--ink)}
 .counters .fine > div{max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 28px;padding:6px var(--g);font:500 11px/1.4 var(--mono);letter-spacing:2px;text-transform:uppercase;color:rgba(27,24,22,.45)}
-.counters .fine i{font-style:normal}
+.counters .fine a{color:inherit;text-decoration:none}
+.counters .fine a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 
 /* Sections */
 .sec{padding-top:var(--sec);padding-bottom:var(--sec)}
@@ -171,13 +172,16 @@ p{margin:0}
 #beliefs{padding-bottom:calc(var(--sec) * .55)}
 #liner-notes{padding-top:calc(var(--sec) * .55)}
 .tl{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
-.tl li{display:grid;grid-template-columns:150px minmax(0,5fr) minmax(0,6fr);gap:40px;padding:36px 0;align-items:baseline}
+.tl li{display:grid;grid-template-columns:190px minmax(0,5fr) minmax(0,6fr);gap:40px;padding:36px 0;align-items:baseline}
 .tl li + li{border-top:1px solid rgba(27,24,22,.22)}
 .tl .no{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
 .tl .no i{width:10px;height:10px;display:block;flex:none}
 .tl h3{font-size:clamp(26px,2.8vw,38px);line-height:1.08;letter-spacing:-.8px}
 .tl p{font-size:18px;line-height:1.6;color:var(--ink-2);max-width:580px}
 @media (max-width:900px){.tl li{grid-template-columns:1fr;gap:12px;padding:28px 0}}
+
+.mech{margin-top:28px;font:500 12px/1.5 var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--muted)}
+.tl li{scroll-margin-top:24px}
 
 /* Liner notes */
 .liner{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start}
@@ -325,8 +329,8 @@ p{margin:0}
     <svg viewBox="80 30 290 150" role="img" aria-label="kapwa" preserveAspectRatio="xMinYMin meet"><path fill="#1B1816" d="M85.4 114.0H98.7V88.1L117.6 114.0H135.5L112.5 85.7L132.3 58.599999999999994H116.4L98.7 84.7V40.099999999999994H85.4Z M186.1 58.599999999999994H173.9V66.0C169.3 59.9 163.8 57.3 155.8 57.3C139.4 57.3 127.6 69.6 127.6 86.5C127.6 103.2 139.29999999999998 115.3 155.5 115.3C163.3 115.3 168.6 112.9 173.9 106.8V114.0H186.1ZM157.2 69.5C166.7 69.5 173.5 76.6 173.5 86.7C173.5 90.7 171.9 95.3 169.5 98.1C166.8 101.4 162.5 103.1 157.4 103.1C147.7 103.1 141.0 96.5 141.0 86.8C141.0 76.69999999999999 147.7 69.5 157.2 69.5Z M187.0 132.5H200.29999999999998V108.8C205.4 113.3 210.5 115.3 217.3 115.3C233.3 115.3 245.0 102.9 245.0 86.1C245.0 69.4 233.4 57.3 217.5 57.3C209.9 57.3 203.5 60.0 199.2 65.1V58.599999999999994H187.0ZM215.7 69.5C224.7 69.5 231.6 76.8 231.6 86.4C231.6 95.8 224.7 103.1 215.9 103.1C206.5 103.1 199.5 95.9 199.5 86.2C199.5 76.69999999999999 206.5 69.5 215.7 69.5Z M257.3 114.0H265.5L276.2 78.1L286.7 114.0H295.0L315.0 58.599999999999994H300.8L290.7 92.4L281.6 58.599999999999994H271.0L261.7 92.4L251.8 58.599999999999994H237.5Z M366.4 58.599999999999994H354.2V66.0C349.59999999999997 59.9 344.09999999999997 57.3 336.09999999999997 57.3C319.7 57.3 307.9 69.6 307.9 86.5C307.9 103.2 319.59999999999997 115.3 335.79999999999995 115.3C343.59999999999997 115.3 348.9 112.9 354.2 106.8V114.0H366.4ZM337.5 69.5C347.0 69.5 353.79999999999995 76.6 353.79999999999995 86.7C353.79999999999995 90.7 352.2 95.3 349.79999999999995 98.1C347.09999999999997 101.4 342.79999999999995 103.1 337.7 103.1C328.0 103.1 321.29999999999995 96.5 321.29999999999995 86.8C321.29999999999995 76.69999999999999 328.0 69.5 337.5 69.5Z"/><rect x="186.6" y="114" width="14" height="66" fill="#F2EBDC"/></svg>
   </a>
   <nav class="nav" aria-label="Main">
-    <a href="#past-sessions">Side A</a>
-    <a href="#beliefs">Side B</a>
+    <a href="#beliefs">On repeat</a>
+    <a href="#speeds">Sessions</a>
     <a href="#liner-notes">Liner notes</a>
     <div class="split"><span class="e sm"><a class="lbl" href="find-your-speed.html" data-fys>Start a session</a><button class="arr" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-nav" aria-label="Choose a session speed"><span>▶</span></button></span><div class="menu" id="speed-nav" role="menu"><div class="hd">Choose your speed</div><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20SP%20%28A%20focused%20sprint%29"><span class="sp">SP</span><span class="tx"><b>A focused sprint</b><small>Standard play · weeks</small></span><span class="sw" aria-hidden="true"><i style="background:#F3B63F"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20LP%20%28Fractional%20leadership%29"><span class="sp">LP</span><span class="tx"><b>Fractional leadership</b><small>Long play · months</small></span><span class="sw" aria-hidden="true"><i style="background:#EF8A32"></i><i style="background:#E4573A"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20EP%20%28A%20standing%20session%29"><span class="sp">EP</span><span class="tx"><b>A standing session</b><small>Extended play · ongoing</small></span><span class="sw" aria-hidden="true"><i style="background:#C93A45"></i><i style="background:#9C2C57"></i><i style="background:#5C2452"></i></span></a><div class="ft">Not sure yet? <a role="menuitem" href="find-your-speed.html" data-fys>Just press play</a> and find your speed.</div></div></div>
   </nav>
@@ -345,7 +349,7 @@ p{margin:0}
     </div>
   </div>
   <div class="jcard" aria-label="J-card">
-    <div class="row" style="color:var(--muted)"><span>Kapwa · Side A</span><span>Hi-fi stereo</span></div>
+    <div class="row" style="color:var(--muted)"><span>Kapwa</span><span>Hi-fi stereo</span></div>
     <div><div class="lbl">Session</div><div class="val">Your next release</div></div>
     <div><div class="lbl">Speed</div>
       <div class="jc-speeds" id="jc-speeds">
@@ -367,26 +371,26 @@ p{margin:0}
     <div><b>15+</b><span>Seed<br>to IPO<br>and counting</span></div>
     <div><b>8+</b><span>Iconic<br>music<br>platforms</span></div>
   </div>
-  <div class="fine" aria-hidden="true"><div><i>Extended high end</i><i>Low noise</i><i>High output</i><i>Super precision studio mechanism</i></div></div>
+  <nav class="fine" aria-label="Specs"><div><a href="#t-low-noise">Low noise</a><a href="#t-extended-high-end">Extended high end</a><a href="#t-high-output">High output</a></div></nav>
 </section>
 
 <div class="wrap" style="margin-top:56px"><section class="shell dark compact" id="past-sessions"><i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i><div class="in" style="padding-left:0;padding-right:0">
 <div style="padding:0 64px" class="padx"><div class="past-top">
-      <div class="l"><p class="eyebrow">Side A · Past sessions</p><h2>Two decades building platforms for creators and the people who love them.</h2></div>
+      <div class="l"><p class="eyebrow">Discography · Past sessions</p><h2>Two decades building platforms for creators and the people who love them.</h2></div>
       <div class="r">
         <p>Music, from Napster and Listen.com to Beats, Apple Music, Pandora, SoundCloud, and UnitedMasters. Media, from CNET and GameSpot to Yahoo and Dwell. Education, at GreatSchools.</p>
       </div>
     </div>
-</div><div class="strip" aria-label="Past sessions"><div class="track"><span>Apple</span><i style="color:#F3B63F">●</i><span>Beats Music</span><i style="color:#EF8A32">●</i><span>Pandora</span><i style="color:#E4573A">●</i><span>SoundCloud</span><i style="color:#C93A45">●</i><span>UnitedMasters</span><i style="color:#9C2C57">●</i><span>Napster</span><i style="color:#5C2452">●</i><span>Listen.com</span><i style="color:#F3B63F">●</i><span>MP3.com</span><i style="color:#EF8A32">●</i><span>GreatSchools</span><i style="color:#E4573A">●</i><span>CNET</span><i style="color:#C93A45">●</i><span>Dwell</span><i style="color:#9C2C57">●</i><span>GameSpot</span><i style="color:#5C2452">●</i><span>Yahoo</span><i style="color:#F3B63F">●</i><span>TV.com</span><i style="color:#EF8A32">●</i><span>thisMoment</span><i style="color:#E4573A">●</i><span class="you">Your session?</span><i style="color:#F3B63F">●</i><span>Apple</span><i style="color:#F3B63F">●</i><span>Beats Music</span><i style="color:#EF8A32">●</i><span>Pandora</span><i style="color:#E4573A">●</i><span>SoundCloud</span><i style="color:#C93A45">●</i><span>UnitedMasters</span><i style="color:#9C2C57">●</i><span>Napster</span><i style="color:#5C2452">●</i><span>Listen.com</span><i style="color:#F3B63F">●</i><span>MP3.com</span><i style="color:#EF8A32">●</i><span>GreatSchools</span><i style="color:#E4573A">●</i><span>CNET</span><i style="color:#C93A45">●</i><span>Dwell</span><i style="color:#9C2C57">●</i><span>GameSpot</span><i style="color:#5C2452">●</i><span>Yahoo</span><i style="color:#F3B63F">●</i><span>TV.com</span><i style="color:#EF8A32">●</i><span>thisMoment</span><i style="color:#E4573A">●</i><span class="you">Your session?</span><i style="color:#F3B63F">●</i></div></div><div style="padding:0 64px" class="padx"><div class="cue"><span>Side A · 16 tracks · 20+ years</span><a class="chev on" href="#beliefs">▶▶&nbsp; Flip to Side B</a></div></div>
+</div><div class="strip" aria-label="Past sessions"><div class="track"><span>Apple</span><i style="color:#F3B63F">●</i><span>Beats Music</span><i style="color:#EF8A32">●</i><span>Pandora</span><i style="color:#E4573A">●</i><span>SoundCloud</span><i style="color:#C93A45">●</i><span>UnitedMasters</span><i style="color:#9C2C57">●</i><span>Napster</span><i style="color:#5C2452">●</i><span>Listen.com</span><i style="color:#F3B63F">●</i><span>MP3.com</span><i style="color:#EF8A32">●</i><span>GreatSchools</span><i style="color:#E4573A">●</i><span>CNET</span><i style="color:#C93A45">●</i><span>Dwell</span><i style="color:#9C2C57">●</i><span>GameSpot</span><i style="color:#5C2452">●</i><span>Yahoo</span><i style="color:#F3B63F">●</i><span>TV.com</span><i style="color:#EF8A32">●</i><span>thisMoment</span><i style="color:#E4573A">●</i><span class="you">Your session?</span><i style="color:#F3B63F">●</i><span>Apple</span><i style="color:#F3B63F">●</i><span>Beats Music</span><i style="color:#EF8A32">●</i><span>Pandora</span><i style="color:#E4573A">●</i><span>SoundCloud</span><i style="color:#C93A45">●</i><span>UnitedMasters</span><i style="color:#9C2C57">●</i><span>Napster</span><i style="color:#5C2452">●</i><span>Listen.com</span><i style="color:#F3B63F">●</i><span>MP3.com</span><i style="color:#EF8A32">●</i><span>GreatSchools</span><i style="color:#E4573A">●</i><span>CNET</span><i style="color:#C93A45">●</i><span>Dwell</span><i style="color:#9C2C57">●</i><span>GameSpot</span><i style="color:#5C2452">●</i><span>Yahoo</span><i style="color:#F3B63F">●</i><span>TV.com</span><i style="color:#EF8A32">●</i><span>thisMoment</span><i style="color:#E4573A">●</i><span class="you">Your session?</span><i style="color:#F3B63F">●</i></div></div><div style="padding:0 64px" class="padx"><div class="cue"><span>Discography · 20+ years of helping to produce massive media platforms</span><a class="chev on" href="#beliefs">▶▶&nbsp; On repeat</a></div></div>
 </div></section></div>
 
 
 <section class="wrap sec" id="beliefs">
   <div class="sec-head">
-    <div class="t"><p class="eyebrow">Side B · On repeat</p><h2 class="h2">We've seen the sock drawers.</h2></div>
+    <div class="t"><p class="eyebrow">Performance · On repeat</p><h2 class="h2">We've seen the sock drawers.</h2></div>
     <p class="lede">Everyone asks how the big platforms really do it. It's not magic. It's fundamentals, on repeat.</p>
   </div>
-  <ol class="tl"><li><span class="no"><i style="background:var(--s1)"></i>Track 01</span><h3>Your software sounds like your team.</h3><p>Melvin Conway called it: systems mirror how the people building them communicate. The best platforms close the communication gaps first, and the architecture follows.</p></li><li><span class="no"><i style="background:var(--s3)"></i>Track 02</span><h3>Whoever owns the fan owns what comes next.</h3><p>Platforms, labels, and creators are all reaching for the same relationship. The winners decide which side of it they're on, then build like they mean it.</p></li><li><span class="no"><i style="background:var(--s5)"></i>Track 03</span><h3>Fast. Not frantic.</h3><p>AI makes teams fast. Taste and judgment keep them from getting frantic. John Wooden said it first: be quick, but don't hurry.</p></li></ol>
+  <ol class="tl"><li id="t-low-noise"><span class="no"><i style="background:var(--s1)"></i>Low noise</span><h3>The products you build mirror how your organization communicates.</h3><p>Melvin Conway called it: systems mirror how the people building them communicate. The best platforms close the communication gaps first, and the architecture follows.</p></li><li id="t-extended-high-end"><span class="no"><i style="background:var(--s3)"></i>Extended high end</span><h3>Whoever owns the fan owns what comes next.</h3><p>Platforms, labels, and creators are all reaching for the same relationship. The winners decide which side of it they're on, then build like they mean it.</p></li><li id="t-high-output"><span class="no"><i style="background:var(--s5)"></i>High output</span><h3>Fast. Not frantic.</h3><p>AI makes teams fast. Taste and judgment keep them from getting frantic. John Wooden said it first: be quick, but don't hurry.</p></li></ol>
 </section>
 
 <section class="wrap sec liner" id="liner-notes">
@@ -409,7 +413,7 @@ p{margin:0}
 
 <section class="wrap sec speeds-sec" id="speeds">
   <div class="sec-head">
-    <div class="t"><p class="eyebrow">Side B · How sessions run</p><h2 class="h2">Choose your speed</h2></div>
+    <div class="t"><p class="eyebrow">Performance · Sessions</p><h2 class="h2">Choose your speed</h2></div>
     <p class="lede">Every engagement is a session. Pick the run time that fits where you are. Not sure? <a href="find-your-speed.html" data-fys style="font-weight:700;text-underline-offset:3px">Find your speed</a>.</p>
   </div>
   <div class="grid3">
@@ -441,6 +445,7 @@ p{margin:0}
       </div>
     </article>
   </div>
+  <p class="mech">Super precision studio mechanism · Every session runs on the same fundamentals, at the speed you pick.</p>
 </section>
 
 
@@ -451,7 +456,7 @@ p{margin:0}
   <div class="wrap contact-body">
     <div class="t">
       <p class="eyebrow"><span class="rec-dot" aria-hidden="true">●</span> Rec · Ready when you are</p>
-      <h2>Tell us what you're making.</h2>
+      <h2>Tell us what you're building.</h2>
       <p>Every session starts with a conversation.</p>
     </div>
     <div class="split"><span class="e"><a class="lbl" href="find-your-speed.html" data-fys>Start a session</a><button class="arr" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="speed-contact" aria-label="Choose a session speed"><span>▶</span></button></span><div class="menu" id="speed-contact" role="menu"><div class="hd">Choose your speed</div><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20SP%20%28A%20focused%20sprint%29"><span class="sp">SP</span><span class="tx"><b>A focused sprint</b><small>Standard play · weeks</small></span><span class="sw" aria-hidden="true"><i style="background:#F3B63F"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20LP%20%28Fractional%20leadership%29"><span class="sp">LP</span><span class="tx"><b>Fractional leadership</b><small>Long play · months</small></span><span class="sw" aria-hidden="true"><i style="background:#EF8A32"></i><i style="background:#E4573A"></i></span></a><a role="menuitem" href="mailto:info@kapwa.dev?subject=Kapwa%20session%3A%20EP%20%28A%20standing%20session%29"><span class="sp">EP</span><span class="tx"><b>A standing session</b><small>Extended play · ongoing</small></span><span class="sw" aria-hidden="true"><i style="background:#C93A45"></i><i style="background:#9C2C57"></i><i style="background:#5C2452"></i></span></a><div class="ft">Not sure yet? <a role="menuitem" href="find-your-speed.html" data-fys>Just press play</a> and find your speed.</div></div></div>
