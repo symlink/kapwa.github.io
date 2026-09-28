@@ -13,14 +13,14 @@ Marketing site for Kapwa, a technology studio run by Bobby Gaza. It's a static s
 | # | Section | Anchor | Group (eyebrow prefix) |
 |---|---------|--------|------------------------|
 | 1 | Header, nav, hero, J-card | `#top` | |
-| 2 | Stats | | Performance (first item in the fine print bar) |
-| 3 | Past sessions (cassette shell, tape strip) | `#past-sessions` | Discography |
+| 2 | Past sessions (cassette shell, tape strip) | `#past-sessions` | Discography |
+| 3 | Stats | | Performance (first item in the fine print bar) |
 | 4 | On repeat (tracklist) | `#beliefs` | Fidelity |
 | 5 | Liner notes | `#liner-notes` | Liner notes |
 | 6 | Choose your speed | `#speeds` | Playback |
 | 7 | Contact and footer | `#contact` | Rec |
 
-The chain, in page order: Performance · Discography · Fidelity · Liner notes · Playback · Rec.
+The chain, in page order: Discography · Performance · Fidelity · Liner notes · Playback · Rec.
 
 - Nav: On repeat → `#beliefs`, Sessions → `#speeds`, Liner notes → `#liner-notes`. Nav uses plain section names; eyebrows use the chain words.
 - The stats fine print bar starts with "Performance", then links each spec to its track (`#t-low-noise`, `#t-extended-high-end`, `#t-high-output`).
